@@ -2,6 +2,14 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QFile>
+#include "iostream"
+#include "fstream"
+#include <QString>
+#include <string>
+
+
+using namespace std;
 
 namespace Ui {
 class MainWindow;
@@ -20,10 +28,12 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
-    QString loginin="12345";
-    QString passwordin="qwerty";
-    QString password;
     QString login;
+    QString password;
+    QString lp;
+    string lpread;
+    ifstream autorize;
 };
+
 
 #endif // MAINWINDOW_H
