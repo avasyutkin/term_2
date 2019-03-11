@@ -40,7 +40,7 @@ void MainWindow::on_pushButton_clicked()
          }
          else if(autorize.eof())
          {
-         QMessageBox::information(this, "Неверно", "Проверьте введенные данные.");
+             QMessageBox::information(this, "Неверно", "Проверьте введенные данные.");
          }
      }
  }
