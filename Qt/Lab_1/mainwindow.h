@@ -1,10 +1,12 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include <QMainWindow>
-#include <QFile>
 #include "iostream"
 #include "fstream"
+#include "windowadmin.h"
+#include "windowdriver.h"
+#include <QMainWindow>
+#include <QFile>
 #include <QString>
 #include <string>
 
@@ -32,8 +34,9 @@ private:
     QString password;
     QString lp;
     string lpread;
-    string lpread1;
     ifstream autorize;
+    WindowAdmin *admin;
+    WindowDriver *driver;
 };
 
 

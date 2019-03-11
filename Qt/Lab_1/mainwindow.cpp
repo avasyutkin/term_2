@@ -6,7 +6,6 @@
 #include <QMessageBox>
 #include <QFile>
 #include <QTextStream>
-#include <sstream>
 
 using namespace std;
 MainWindow::MainWindow(QWidget *parent) :
@@ -27,21 +26,38 @@ void MainWindow::on_pushButton_clicked()
     password=ui->password->text();
     lp = login + ":" + password;
     string _lp = lp.toUtf8().constData();
-    autorize.open("E:\\181_331_vasyutkin\\vasyutkin_term2\\Qt\\Lab_1\\autorize.txt", ios::in);
+    autorize.open("E:\\181_331_vasyutkin\\vasyutkin_term2\\Qt\\Lab_1\\autorize.txt");
 
- while (getline(autorize, lpread))
- {
-     if(getline(autorize, lpread, '.'))
-     {
-         if(lpread==_lp)
-         {
-             QMessageBox::information(this, "Успешно", "Вы авторизовались.");
-             break;
-         }
-         else if(autorize.eof())
-         {
-             QMessageBox::information(this, "Неверно", "Проверьте введенные данные.");
-         }
-     }
- }
+    while (getline(autorize, lpread))
+    {
+        if(getline(autorize, lpread, '.'))
+        {
+            if(lpread==_lp+"^admin")
+            {
+                hide();
+                admin = new WindowAdmin(this);
+                admin -> show();
+                autorize.close();
+                break;
+            }
+            if(lpread==_lp+"^driver")
+            {
+                hide();
+                driver = new WindowDriver(this);
+                driver -> show();
+                autorize.close();
+                break;
+            }
+            else if(autorize.eof())
+            {
+                hide();
+                QMessageBox::warning(this, "Ошибка", "Попробуйте ввести заново Ваш логин и пароль.");
+                autorize.close();
+                ui->login->clear();
+                ui->password->clear();
+                this -> show();
+
+            }
+        }
+    }
 }
