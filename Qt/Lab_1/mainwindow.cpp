@@ -35,5 +35,9 @@ void MainWindow::on_pushButton_clicked()
          QMessageBox::information(this, "Успешно", "Вы авторизовались.");
          break;
      }
+     else if(autorize.eof())
+     {
+         QMessageBox::information(this, "Неверно", "Проверьте введенные данные.");
+     }
     }
 }
