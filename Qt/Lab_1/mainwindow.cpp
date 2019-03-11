@@ -6,6 +6,7 @@
 #include <QMessageBox>
 #include <QFile>
 #include <QTextStream>
+#include <sstream>
 
 using namespace std;
 MainWindow::MainWindow(QWidget *parent) :
@@ -29,17 +30,18 @@ void MainWindow::on_pushButton_clicked()
     autorize.open("E:\\181_331_vasyutkin\\vasyutkin_term2\\Qt\\Lab_1\\autorize.txt", ios::in);
 
  while (getline(autorize, lpread))
-    {
-
-     if(lpread==_lp)
+ {
+     if(getline(autorize, lpread, '.'))
      {
-         QMessageBox::information(this, "Успешно", "Вы авторизовались.");
-         break;
-     }
-     else if(autorize.eof())
-     {
+         if(lpread==_lp)
+         {
+             QMessageBox::information(this, "Успешно", "Вы авторизовались.");
+             break;
+         }
+         else if(autorize.eof())
+         {
          QMessageBox::information(this, "Неверно", "Проверьте введенные данные.");
+         }
      }
-    }
+ }
 }
-

@@ -32,8 +32,8 @@ private:
     QString password;
     QString lp;
     string lpread;
+    string lpread1;
     ifstream autorize;
-    stringstream ss();
 };
 
 
