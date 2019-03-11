@@ -10,5 +10,5 @@ int main(int argc, char *argv[])
 
 
 
-    a.exec();
+    return a.exec();
 }
