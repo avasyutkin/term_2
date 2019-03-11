@@ -33,6 +33,7 @@ private:
     QString lp;
     string lpread;
     ifstream autorize;
+    stringstream ss();
 };
 
 

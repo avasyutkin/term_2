@@ -30,6 +30,7 @@ void MainWindow::on_pushButton_clicked()
 
  while (getline(autorize, lpread))
     {
+
      if(lpread==_lp)
      {
          QMessageBox::information(this, "Успешно", "Вы авторизовались.");
@@ -41,3 +42,4 @@ void MainWindow::on_pushButton_clicked()
      }
     }
 }
+
