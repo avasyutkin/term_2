@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "registration.h"
 #include "iostream"
 #include "fstream"
 #include <QString>
