@@ -38,6 +38,8 @@ private:
     QString lp;
     string lpread;
     ofstream regist;
+    WindowAdmin *admin;
+    WindowDriver *driver;
 };
 
 #endif // REGISTRATION_H
