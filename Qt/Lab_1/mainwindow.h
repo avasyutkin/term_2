@@ -10,7 +10,6 @@
 #include <QString>
 #include <string>
 
-
 using namespace std;
 
 namespace Ui {
