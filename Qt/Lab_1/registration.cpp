@@ -42,6 +42,11 @@ void registration::on_pushButton_clicked()
             string _lp = lp.toUtf8().constData();
             regist<<_lp;
             regist.close();
+            lp=login+":"+password+". "+name+"\n";
+            _lp = lp.toUtf8().constData();
+            registadmin.open("E:\\181_331_vasyutkin\\vasyutkin_term2\\Qt\\Lab_1\\db_admin.txt", ios::app);
+            registadmin<<_lp;
+            registadmin.close();
             hide();
             admin=new WindowAdmin(this);
             admin->show();
@@ -61,6 +66,11 @@ void registration::on_pushButton_clicked()
             string _lp = lp.toUtf8().constData();
             regist<<_lp;
             regist.close();
+            lp=login+":"+password+". "+name+"\n";
+            _lp = lp.toUtf8().constData();
+            registdriver.open("E:\\181_331_vasyutkin\\vasyutkin_term2\\Qt\\Lab_1\\db_driver.txt", ios::app);
+            registdriver<<_lp;
+            registdriver.close();
             hide();
             driver=new WindowDriver(this);
             driver->show();

@@ -38,6 +38,8 @@ private:
     QString lp;
     string lpread;
     ofstream regist;
+    ofstream registadmin;
+    ofstream registdriver;
     WindowAdmin *admin;
     WindowDriver *driver;
 };
