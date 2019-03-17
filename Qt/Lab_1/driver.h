@@ -6,7 +6,7 @@ class Driver : public Person
 {
 public:
     Driver();
-    ~Driver();
+    //~Driver();
     void changelp();
 };
 

@@ -5,6 +5,7 @@
 #include "fstream"
 #include "windowadmin.h"
 #include "windowdriver.h"
+#include "person.h"
 #include <QMainWindow>
 #include <QFile>
 #include <QString>
@@ -31,6 +32,7 @@ private:
     Ui::MainWindow *ui;
     QString login;
     QString password;
+    QString name;
     QString lp;
     string lpread;
     ifstream autorize;

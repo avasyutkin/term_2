@@ -4,6 +4,7 @@
 #include "iostream"
 #include "fstream"
 #include "mainwindow.h"
+#include "person.h"
 #include <QMainWindow>
 #include <QFile>
 #include <QString>
@@ -26,7 +27,6 @@ public:
 private slots:
     void on_pushButton_2_clicked();
     void on_pushButton_clicked();
-
     void on_checkBox_stateChanged(int arg1);
 
 private:
@@ -35,11 +35,13 @@ private:
     QString login;
     QString password;
     QString name;
+    QString phonenum;
+    QString bday;
+    QString bmonth;
+    QString byear;
     QString lp;
     string lpread;
     ofstream regist;
-    ofstream registadmin;
-    ofstream registdriver;
     WindowAdmin *admin;
     WindowDriver *driver;
 };

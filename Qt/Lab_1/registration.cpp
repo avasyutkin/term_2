@@ -1,6 +1,9 @@
 #include "registration.h"
 #include "ui_registration.h"
 #include "mainwindow.h"
+#include "person.h"
+#include "admin.h"
+#include "driver.h"
 #include "iostream"
 #include "string"
 #include "fstream"
@@ -25,9 +28,19 @@ registration::~registration()
 void registration::on_pushButton_clicked()
 {
     name=ui->name->text();
+    phonenum=ui->phonenum->text();
+    bday=ui->bday->text();
+    bmonth=ui->bmonth->text();
+    byear=ui->byear->text();
     login=ui->login->text();
     password=ui->password->text();
-    regist.open("E:\\181_331_vasyutkin\\vasyutkin_term2\\Qt\\Lab_1\\autorize.txt", ios::app);
+    string _name = name.toUtf8().constData();
+    string _bday = bday.toUtf8().constData();
+    string _bmonth = bmonth.toUtf8().constData();
+    string _byear = byear.toUtf8().constData();
+    string _phonenum = phonenum.toUtf8().constData();
+    string _login = login.toUtf8().constData();
+    string _password = password.toUtf8().constData();
 
     if(ui->checkBox->isChecked() && ui->checkBox_2->isChecked())
     {
@@ -36,17 +49,10 @@ void registration::on_pushButton_clicked()
 
     else if(ui->checkBox->isChecked())
     {
-        if(name.size()!=0 && login.size()!=0 && password.size()!=0)
+        if(name.size()!=0 && login.size()!=0 && password.size()!=0 && bday.size()!=0 && bmonth.size()!=0 && byear.size()!=0 && phonenum.size()!=0)
         {
-            lp=login+":"+password+"^admin. "+name+"\n";
-            string _lp = lp.toUtf8().constData();
-            regist<<_lp;
-            regist.close();
-            lp=login+":"+password+". "+name+"\n";
-            _lp = lp.toUtf8().constData();
-            registadmin.open("E:\\181_331_vasyutkin\\vasyutkin_term2\\Qt\\Lab_1\\db_admin.txt", ios::app);
-            registadmin<<_lp;
-            registadmin.close();
+            Admin _admin;
+            _admin.reg(_name, _bday, _bmonth, _byear, _phonenum, _login, _password, "admin");
             hide();
             admin=new WindowAdmin(this);
             admin->show();
@@ -60,24 +66,16 @@ void registration::on_pushButton_clicked()
 
     else if(ui->checkBox_2->isChecked())
     {
-        if(name.size()!=0 && login.size()!=0 && password.size()!=0)
+        if(name.size()!=0 && login.size()!=0 && password.size()!=0 && bday.size()!=0 && bmonth.size()!=0 && byear.size()!=0 && phonenum.size()!=0)
         {
-            lp=login+":"+password+"^admin. "+name+"\n";
-            string _lp = lp.toUtf8().constData();
-            regist<<_lp;
-            regist.close();
-            lp=login+":"+password+". "+name+"\n";
-            _lp = lp.toUtf8().constData();
-            registdriver.open("E:\\181_331_vasyutkin\\vasyutkin_term2\\Qt\\Lab_1\\db_driver.txt", ios::app);
-            registdriver<<_lp;
-            registdriver.close();
+            Driver _driver;
+            _driver.reg(_name, _bday, _bmonth, _byear, _phonenum, _login, _password, "driver");
             hide();
             driver=new WindowDriver(this);
             driver->show();
         }
         else
         {
-            regist.close();
             QMessageBox::warning(this, "Ошибка", "Заполните все поля.");
         }
     }
@@ -87,6 +85,18 @@ void registration::on_pushButton_2_clicked()
     hide();
     autorization = new MainWindow(this);
     autorization -> show();
+}
+
+void Person::reg(string name, string bday, string bmonth, string byear, string phonenum, string login, string password, string dbname)
+{
+    lp = login+":"+password+"^"+dbname+". "+name+":"+bday+"/"+bmonth+"/"+byear+":"+phonenum+"\n";
+    regist.open("E:\\181_331_vasyutkin\\vasyutkin_term2\\Qt\\Lab_1\\autorize.txt", ios::app);
+    regist<<lp;
+    regist.close();
+    lp=login+":"+password+". "+name+":"+bday+"/"+bmonth+"/"+byear+":"+phonenum+"\n";
+    regist.open("E:\\181_331_vasyutkin\\vasyutkin_term2\\Qt\\Lab_1\\"+dbname+".txt", ios::app);
+    regist<<lp;
+    regist.close();
 }
 
 void registration::on_checkBox_stateChanged(int arg1)

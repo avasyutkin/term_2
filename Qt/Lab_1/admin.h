@@ -6,7 +6,7 @@ class Admin : public Person
 {
 public:
     Admin();
-    ~Admin();
+   // ~Admin();
 };
 
 #endif // ADMIN_H
