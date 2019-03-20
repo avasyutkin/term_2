@@ -2,6 +2,9 @@
 #define WINDOWDRIVER_H
 
 #include <QDialog>
+#include "driver.h"
+#include <string>
+#include "writejournal.h"
 
 namespace Ui {
 class WindowDriver;
@@ -15,8 +18,12 @@ public:
     explicit WindowDriver(QWidget *parent = nullptr);
     ~WindowDriver();
 
+private slots:
+    void on_pushButton_clicked();
+
 private:
     Ui::WindowDriver *ui;
+    WriteJournal *driver;
 };
 
 #endif // WINDOWDRIVER_H

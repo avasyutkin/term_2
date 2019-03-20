@@ -1,5 +1,7 @@
 #include "windowdriver.h"
 #include "ui_windowdriver.h"
+#include "driver.h"
+#include "writejournal.h"
 
 WindowDriver::WindowDriver(QWidget *parent) :
     QDialog(parent),
@@ -11,4 +13,10 @@ WindowDriver::WindowDriver(QWidget *parent) :
 WindowDriver::~WindowDriver()
 {
     delete ui;
+}
+
+void WindowDriver::on_pushButton_clicked()
+{
+    driver = new WriteJournal(this);
+    driver->show();
 }

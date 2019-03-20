@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>DepartureJournal</class>
+ <widget class="QDialog" name="DepartureJournal">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>651</width>
+    <height>325</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <layout class="QHBoxLayout" name="horizontalLayout">
+   <item>
+    <widget class="QColumnView" name="columnView_3"/>
+   </item>
+   <item>
+    <widget class="QColumnView" name="columnView_2"/>
+   </item>
+   <item>
+    <widget class="QColumnView" name="columnView"/>
+   </item>
+   <item>
+    <widget class="QTableView" name="DepJpurnal"/>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

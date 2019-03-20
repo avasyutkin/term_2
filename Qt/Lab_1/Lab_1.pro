@@ -32,7 +32,10 @@ SOURCES += \
     registration.cpp \
     person.cpp \
     admin.cpp \
-    driver.cpp
+    driver.cpp \
+    database.cpp \
+    departurejournal.cpp \
+    writejournal.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -41,13 +44,18 @@ HEADERS += \
     registration.h \
     person.h \
     admin.h \
-    driver.h
+    driver.h \
+    database.h \
+    departurejournal.h \
+    writejournal.h
 
 FORMS += \
         mainwindow.ui \
     windowadmin.ui \
     windowdriver.ui \
-    registration.ui
+    registration.ui \
+    departurejournal.ui \
+    writejournal.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

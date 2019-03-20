@@ -24,7 +24,7 @@ public:
     explicit registration(QWidget *parent = nullptr);
     ~registration();
 
-private slots:
+public slots:
     void on_pushButton_2_clicked();
     void on_pushButton_clicked();
     void on_checkBox_stateChanged(int arg1);
@@ -44,6 +44,7 @@ private:
     ofstream regist;
     WindowAdmin *admin;
     WindowDriver *driver;
+    string dbname;
 };
 
 #endif // REGISTRATION_H

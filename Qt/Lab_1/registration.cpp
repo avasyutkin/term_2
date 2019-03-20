@@ -51,11 +51,15 @@ void registration::on_pushButton_clicked()
     {
         if(name.size()!=0 && login.size()!=0 && password.size()!=0 && bday.size()!=0 && bmonth.size()!=0 && byear.size()!=0 && phonenum.size()!=0)
         {
+
             Admin _admin;
             _admin.reg(_name, _bday, _bmonth, _byear, _phonenum, _login, _password, "admin");
+            _admin.reg(_name, _bday, _bmonth, _byear, _phonenum, _login, _password, "commondb");
+            Admin usera(string commondb);
             hide();
             admin=new WindowAdmin(this);
             admin->show();
+
         }
         else
         {
@@ -70,6 +74,8 @@ void registration::on_pushButton_clicked()
         {
             Driver _driver;
             _driver.reg(_name, _bday, _bmonth, _byear, _phonenum, _login, _password, "driver");
+            _driver.reg(_name, _bday, _bmonth, _byear, _phonenum, _login, _password, "commondb");
+            Driver userd(string driver);
             hide();
             driver=new WindowDriver(this);
             driver->show();
@@ -85,18 +91,6 @@ void registration::on_pushButton_2_clicked()
     hide();
     autorization = new MainWindow(this);
     autorization -> show();
-}
-
-void Person::reg(string name, string bday, string bmonth, string byear, string phonenum, string login, string password, string dbname)
-{
-    lp = login+":"+password+"^"+dbname+". "+name+":"+bday+"/"+bmonth+"/"+byear+":"+phonenum+"\n";
-    regist.open("E:\\181_331_vasyutkin\\vasyutkin_term2\\Qt\\Lab_1\\autorize.txt", ios::app);
-    regist<<lp;
-    regist.close();
-    lp=login+":"+password+". "+name+":"+bday+"/"+bmonth+"/"+byear+":"+phonenum+"\n";
-    regist.open("E:\\181_331_vasyutkin\\vasyutkin_term2\\Qt\\Lab_1\\"+dbname+".txt", ios::app);
-    regist<<lp;
-    regist.close();
 }
 
 void registration::on_checkBox_stateChanged(int arg1)

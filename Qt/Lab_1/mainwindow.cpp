@@ -3,6 +3,8 @@
 #include "registration.h"
 #include "iostream"
 #include "fstream"
+#include "admin.h"
+#include "driver.h"
 #include <QString>
 #include <QMessageBox>
 #include <QFile>
@@ -32,8 +34,10 @@ void MainWindow::on_pushButton_clicked()
         {
             if(lpread==_lp+"^admin")
             {
+
                 hide();
                 admin = new WindowAdmin(this);
+                Admin userA(string commondb);
                 admin -> show();
                 autorize.close();
                 break;
@@ -42,6 +46,7 @@ void MainWindow::on_pushButton_clicked()
             {
                 hide();
                 driver = new WindowDriver(this);
+                Driver userD(string driver);
                 driver -> show();
                 autorize.close();
                 break;

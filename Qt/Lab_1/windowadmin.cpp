@@ -12,3 +12,13 @@ WindowAdmin::~WindowAdmin()
 {
     delete ui;
 }
+
+void WindowAdmin::on_pushButton_clicked()
+{
+
+}
+
+void WindowAdmin::on_pushButton_2_clicked()
+{
+
+}

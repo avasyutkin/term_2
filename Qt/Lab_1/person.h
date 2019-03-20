@@ -11,26 +11,27 @@
 
 using namespace std;
 
+/*struct ffile{
+    string login; //0
+    string password; //2
+    string name; //1
+    string date; //3
+    string numberphone; //4
+};*/
+
 class Person
 {
 public:
     Person();
+    //Person(string tableName);
+    //Person(QString info);
+    ///void usertovector(string _tableName);
     void reg(string name, string bday, string bmonth, string byear, string phonenum, string login, string password, string dbname);
-    /*Person(string login, string password, string name);
-
-        ifstream strinvec("E:\\181_331_vasyutkin\\vasyutkin_term2\\Qt\\Lab_1\\autorize.txt");
-        if (!strinvec){exit(1);}
-        while (!strinvec.eof())
-        {
-         string str, token;
-         getline(strinvec, str);
-
-        }*/
-
-    //~Person();
-    void changelp();
+    //void changelp();
+    ~Person();
 private:
     QString login;
+    QString info;
     QString password;
     QString name;
     QString phonenum;
@@ -40,6 +41,8 @@ private:
     string lp;
     string lpread;
     ofstream regist;
+   /// string _tableName;
+  ////  vector <ffile> user;
 
 };
 
