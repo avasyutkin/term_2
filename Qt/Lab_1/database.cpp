@@ -133,3 +133,8 @@ DataBase::~DataBase()
 {
 
 }
+
+void DataBase::exit()
+{
+    user.clear();
+}

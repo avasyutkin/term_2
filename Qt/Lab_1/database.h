@@ -39,6 +39,7 @@ public:
     void usertovector(string tableName);
     void changepass();
     ~DataBase();
+    void exit();
 private:
     string _tableName;
     vector <ffile> user;

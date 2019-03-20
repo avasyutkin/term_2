@@ -1,5 +1,6 @@
 #include "person.h"
 #include <QCoreApplication>
+#include "database.h"
 
 #include <iostream>
 #include <fstream>
@@ -7,6 +8,7 @@
 #include <cstdlib>
 #include <string>
 #include <vector>
+#include <QMessageBox>
 
 using namespace std;
 
@@ -75,3 +77,4 @@ Person::~Person()
 {
 
 }
+

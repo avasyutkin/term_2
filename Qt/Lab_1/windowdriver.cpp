@@ -20,3 +20,11 @@ void WindowDriver::on_pushButton_clicked()
     driver = new WriteJournal(this);
     driver->show();
 }
+
+void WindowDriver::on_pushButton_3_clicked()
+{
+    hide();
+    DataBase a;
+    a.exit();
+
+}

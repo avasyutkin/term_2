@@ -22,3 +22,10 @@ void WindowAdmin::on_pushButton_2_clicked()
 {
 
 }
+
+void WindowAdmin::on_pushButton_5_clicked()
+{
+    hide();
+    DataBase a;
+    a.exit();
+}

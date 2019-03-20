@@ -2,6 +2,8 @@
 #define WINDOWADMIN_H
 
 #include <QDialog>
+#include "database.h"
+#include "person.h"
 
 namespace Ui {
 class WindowAdmin;
@@ -20,8 +22,11 @@ private slots:
 
     void on_pushButton_2_clicked();
 
+    void on_pushButton_5_clicked();
+
 private:
     Ui::WindowAdmin *ui;
+    //registration *windows;
 };
 
 #endif // WINDOWADMIN_H

@@ -8,6 +8,8 @@
 #include <QString>
 #include <string>
 #include "vector"
+#include <QDialog>
+#include "database.h"
 
 using namespace std;
 
