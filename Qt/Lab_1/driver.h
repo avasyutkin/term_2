@@ -21,10 +21,6 @@ public:
     void changelp();
     void writejournal(string _carmodel, string _name, string _dateday, string _datemonth, string _dateyear, string _timehour, string _timeminute);
 private:
-    /*
-    string carmodel;
-    string date;
-    string time;*/
     string jl;
     string _tableName;
     ofstream journl;

@@ -26,7 +26,6 @@ private slots:
 
 private:
     Ui::WindowAdmin *ui;
-    //registration *windows;
 };
 
 #endif // WINDOWADMIN_H

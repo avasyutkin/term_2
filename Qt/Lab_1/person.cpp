@@ -67,12 +67,6 @@ void Person::reg(string name, string bday, string bmonth, string byear, string p
     regist.close();
 }
 
-/*Person::Person(string tableName)
-{
-    _tableName=tableName;
-    usertovector(_tableName);
-}
-*/
 Person::~Person()
 {
 

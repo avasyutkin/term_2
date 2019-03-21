@@ -13,23 +13,11 @@
 
 using namespace std;
 
-/*struct ffile{
-    string login; //0
-    string password; //2
-    string name; //1
-    string date; //3
-    string numberphone; //4
-};*/
-
 class Person
 {
 public:
     Person();
-    //Person(string tableName);
-    //Person(QString info);
-    ///void usertovector(string _tableName);
     void reg(string name, string bday, string bmonth, string byear, string phonenum, string login, string password, string dbname);
-    //void changelp();
     ~Person();
 private:
     QString login;
@@ -43,9 +31,6 @@ private:
     string lp;
     string lpread;
     ofstream regist;
-   /// string _tableName;
-  ////  vector <ffile> user;
-
 };
 
 
