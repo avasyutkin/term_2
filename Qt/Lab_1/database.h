@@ -22,8 +22,11 @@ class DataBase
 {
 public:
     DataBase();
+    DataBase(string tableName);
     void usertovector(string tableName);
     void changepass();
+    DataBase search(string k, string v);
+    void push_back(ffile item);
     ~DataBase();
     void exit();
 private:
@@ -31,44 +34,5 @@ private:
     vector <ffile> user;
 };
 
-struct Test1{
-    int id; //0
-    int year; //2
-    string name; //1
-    string address; //3
-};
-
-struct Test2{
-    int id;
-    string year;
-    string name;
-    string address;
-};
-
-class DB_Test1{
-private:
-    string _tableName;
-    vector<Test1> _db;
-
-    void fileToVector();
-public:
-    DB_Test1();
-    DB_Test1(string tableName);
-    void push_back(Test1 item);
-    DB_Test1 search(string k, int v);
-    DB_Test1 search(string k, string v);
-};
-
-class DB_Test2{
-private:
-    string _tableName;
-    vector<Test2> _db;
-
-    void fileToVector();
-
-public:
-    DB_Test2();
-    DB_Test2(string tableName);
-};
 
 #endif // DATABASE_H
