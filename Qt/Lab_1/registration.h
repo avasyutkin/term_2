@@ -5,6 +5,7 @@
 #include "fstream"
 #include "mainwindow.h"
 #include "person.h"
+#include "database.h"
 #include <QMainWindow>
 #include <QFile>
 #include <QString>

@@ -2,6 +2,11 @@
 #define DEPARTUREJOURNAL_H
 
 #include <QDialog>
+#include "QStandardItemModel"
+#include "QStandardItem"
+#include "database.h"
+
+using namespace std;
 
 namespace Ui {
 class DepartureJournal;
@@ -16,7 +21,10 @@ public:
     ~DepartureJournal();
 
 private:
-    Ui::DepartureJournal *ui;
+    QStandardItemModel *model = new QStandardItemModel;
+    QStandardItem *item;
+    QStringList horizontalHeader;
+    Ui::DepartureJournal *ui;    
 };
 
 #endif // DEPARTUREJOURNAL_H

@@ -43,6 +43,32 @@ void DataBase::usertovector(string _tablename)
     file.close();
 }
 
+void DataBase::journaltovector()
+{
+    ifstream file;
+    file.open("E:\\181_331_vasyutkin\\vasyutkin_term2\\Qt\\Lab_1\\departurejournal.txt", ios::app);
+    while(!file.eof())
+    {
+        string token, str;
+        getline(file, str);
+        journal item;
+
+        int k = 0;
+        istringstream fileS(str);
+
+        while(getline(fileS, token, ':')){
+            //cout << token << endl; //токен
+            if(k == 0) item.carmodel = token;
+            if(k == 1) item.driver = token;
+            if(k == 2) item.date = token;
+            if(k == 3) item.time = token;
+            k++;
+        }
+        journaal.push_back(item);
+    }
+    file.close();
+}
+
 void DataBase::changepass()
 {
 
@@ -79,4 +105,29 @@ DataBase::~DataBase()
 void DataBase::exit()
 {
     user.clear();
+}
+
+int DataBase::getJournalSize()
+{
+    return journaal.size();
+}
+
+string DataBase::getJournalCar(int i)
+{
+    return journaal.at(i).carmodel;
+}
+
+string DataBase::getJournalDriver(int i)
+{
+    return journaal.at(i).driver;
+}
+
+string DataBase::getJournalDate(int i)
+{
+    return journaal.at(i).date;
+}
+
+string DataBase::getJournalTime(int i)
+{
+    return journaal.at(i).time;
 }

@@ -4,6 +4,7 @@
 #include <QDialog>
 #include "database.h"
 #include "person.h"
+#include "departurejournal.h"
 
 namespace Ui {
 class WindowAdmin;
@@ -26,6 +27,8 @@ private slots:
 
 private:
     Ui::WindowAdmin *ui;
+    DepartureJournal *journol;
+
 };
 
 #endif // WINDOWADMIN_H

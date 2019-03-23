@@ -15,16 +15,7 @@
   </property>
   <layout class="QHBoxLayout" name="horizontalLayout">
    <item>
-    <widget class="QColumnView" name="columnView_3"/>
-   </item>
-   <item>
-    <widget class="QColumnView" name="columnView_2"/>
-   </item>
-   <item>
-    <widget class="QColumnView" name="columnView"/>
-   </item>
-   <item>
-    <widget class="QTableView" name="DepJpurnal"/>
+    <widget class="QTableWidget" name="tableWidget"/>
    </item>
   </layout>
  </widget>

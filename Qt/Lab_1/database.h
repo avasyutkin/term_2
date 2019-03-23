@@ -18,6 +18,13 @@ struct ffile{
     string numberphone; //4
 };
 
+struct journal{
+    string carmodel;
+    string driver;
+    string date;
+    string time;
+};
+
 class DataBase
 {
 public:
@@ -29,9 +36,16 @@ public:
     void push_back(ffile item);
     ~DataBase();
     void exit();
+    void journaltovector();
+    int getJournalSize();
+    string getJournalCar(int i);
+    string getJournalDriver(int i);
+    string getJournalDate(int i);
+    string getJournalTime(int i);
 private:
     string _tableName;
     vector <ffile> user;
+    vector <journal> journaal;
 };
 
 
