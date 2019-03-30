@@ -10,6 +10,8 @@
 #include <QMessageBox>
 #include <QFile>
 #include <QTextStream>
+#include <sstream>
+#include <cstdlib>
 
 using namespace std;
 MainWindow::MainWindow(QWidget *parent) :
@@ -28,34 +30,47 @@ void MainWindow::on_pushButton_clicked()
     password=ui->password->text();
     lp = login + ":" + password;
     string _lp = lp.toUtf8().constData();
-    autorize.open("E:\\181_331_vasyutkin\\vasyutkin_term2\\Qt\\Lab_1\\autorize.txt");
-    while (getline(autorize, lpread))
+    autorize.open("E:\\181_331_vasyutkin\\vasyutkin_term2\\Qt\\Lab_1\\commondb.txt");
+    while(!autorize.eof())
     {
-        if(getline(autorize, lpread, '.'))
+        string str, token;
+        getline(autorize, str);
+        ffile item;
+        int k = 0;
+        istringstream fileS(str);
+        while(getline(fileS, token, ':'))
         {
-            if(lpread==_lp+"^admin")
-            {
+            if(k == 0) item.login = token;
+            if(k == 1) item.password = token;
+            if(k == 2) item.position = token;
+            if(k == 3) item.name = token;
+            if(k == 4) item.date = token;
+            if(k == 5) item.numberphone = token;
+            k++;
+            lpread = item.login+':'+item.password+':'+item.position;
+        }
+        if(lpread==_lp+":21232f297a57a5a743894a0e4a801fc3")
+        {
 
-                hide();
-                DataBase user;
-                user.chlongpass(_lp);
-                admin = new WindowAdmin(this);
-                Admin userA("commondb");
-                admin -> show();
-                autorize.close();
-                break;
-            }
-            if(lpread==_lp+"^driver")
-            {
-                hide();
-                DataBase user;
-                user.chlongpass(_lp);
-                driver = new WindowDriver(this);
-                Driver userD("driver");
-                driver -> show();
-                autorize.close();
-                break;
-            }
+            hide();
+            DataBase user;
+            user.chlongpass(_lp);
+            admin = new WindowAdmin(this);
+            Admin userA("commondb");
+            admin -> show();
+            autorize.close();
+            break;
+        }
+        if(lpread==_lp+":e2d45d57c7e2941b65c6ccd64af4223e")
+        {
+            hide();
+            DataBase user;
+            user.chlongpass(_lp);
+            driver = new WindowDriver(this);
+            Driver userD("driver");
+            driver -> show();
+            autorize.close();
+            break;
         }
         else if(autorize.eof())
         {

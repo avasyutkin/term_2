@@ -41,6 +41,7 @@ private:
     QString bmonth;
     QString byear;
     QString lp;
+    QString position;
     string lpread;
     ofstream regist;
     WindowAdmin *admin;

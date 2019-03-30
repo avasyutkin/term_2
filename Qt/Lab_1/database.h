@@ -16,6 +16,7 @@ struct ffile{
     string name; //1
     string date; //3
     string numberphone; //4
+    string position;
 };
 
 struct journal{

@@ -47,8 +47,7 @@ void registration::on_pushButton_clicked()
         {
 
             Admin _admin;
-            _admin.reg(name, bday, bmonth, byear, phonenum, login, password, "admin");
-            _admin.reg(name, bday, bmonth, byear, phonenum, login, password, "commondb");
+            _admin.reg(name, bday, bmonth, byear, phonenum, login, password, "21232f297a57a5a743894a0e4a801fc3", "admin");
             Admin usera(string commondb);
             hide();
             admin=new WindowAdmin(this);
@@ -64,11 +63,10 @@ void registration::on_pushButton_clicked()
 
     else if(ui->checkBox_2->isChecked())
     {
-        if(name.size()!=0 && login.size()!=0 && password.size()!=0 && bday.size()!=0 && bmonth.size()!=0 && byear.size()!=0 && phonenum.size()!=0)
+        if(name.size()!=0 && login.size()!=0 && password.size()!=0 &&  bday.size()!=0 && bmonth.size()!=0 && byear.size()!=0 && phonenum.size()!=0)
         {
             Driver _driver;
-            _driver.reg(name, bday, bmonth, byear, phonenum, login, password, "driver");
-            _driver.reg(name, bday, bmonth, byear, phonenum, login, password , "commondb");
+            _driver.reg(name, bday, bmonth, byear, phonenum, login, password, "e2d45d57c7e2941b65c6ccd64af4223e", "driver");
             Driver userd(string driver);
             hide();
             driver=new WindowDriver(this);

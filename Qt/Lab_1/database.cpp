@@ -36,9 +36,10 @@ void DataBase::usertovector(string _tablename)
             //cout << token << endl; //токен
             if(k == 0) item.login = token;
             if(k == 1) item.password = token;
-            if(k == 2) item.name = token;
-            if(k == 3) item.date = token;
-            if(k == 4) item.numberphone = token;
+            if(k == 2) item.position = token;
+            if(k == 3) item.name = token;
+            if(k == 4) item.date = token;
+            if(k == 5) item.numberphone = token;
             k++;
         }
         user.push_back(item);
@@ -53,7 +54,7 @@ void DataBase::vectortouser(string _tablename){
     {
         QTextStream UserS(&User);
         for (unsigned i = 0; i < user.size()-1; i++)
-            UserS << QString::fromLocal8Bit(user.at(i).login.c_str()) << ':' << QString::fromLocal8Bit(user.at(i).password.c_str()) << ':' << QString::fromLocal8Bit(user.at(i).name.c_str()) << ':' << QString::fromLocal8Bit(user.at(i).date.c_str()) << ':' << QString::fromLocal8Bit(user.at(i).numberphone.c_str()) << "\r\n";
+            UserS << QString::fromLocal8Bit(user.at(i).login.c_str()) << ':' << QString::fromLocal8Bit(user.at(i).password.c_str()) << ':' << QString::fromLocal8Bit(user.at(i).position.c_str()) << ':' << QString::fromLocal8Bit(user.at(i).name.c_str()) << ':' << QString::fromLocal8Bit(user.at(i).date.c_str()) << ':' << QString::fromLocal8Bit(user.at(i).numberphone.c_str()) << "\r\n";
         User.close();
     }
 }

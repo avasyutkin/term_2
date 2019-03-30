@@ -34,15 +34,22 @@ void ChangePass::on_pushButton_clicked()
 
     DataBase passsss;
     passsss.usertovector("commondb");
-   if(passsss.getpass()==_oldpass && _newpass==_newpass2)
+    if (_oldpass.size()!=0 && _newpass.size()!=0 && _newpass2.size()!=0)
     {
-        passsss.changepass(_newpass);
-        passsss.vectortouser("commondb");
-        this->hide();
-        QMessageBox::information(this, "Успешно", "Вы сменили пароль.");
+        if (_oldpass==_newpass)
+            QMessageBox::warning(this, "Ошибка", "Старый и новый пароли не должны совпадать.");
+        else if(passsss.getpass()==_oldpass && _newpass==_newpass2)
+        {
+            passsss.changepass(_newpass);
+            passsss.vectortouser("commondb");
+            this->hide();
+            QMessageBox::information(this, "Успешно", "Вы сменили пароль.");
+        }
+        else if (passsss.getpass()!=_oldpass)
+            QMessageBox::warning(this, "Ошибка", "Старый пароль введен неверно.");
+        else
+            QMessageBox::warning(this, "Ошибка", "Пароли не совпадают.");
     }
-   else if (passsss.getpass()!=_oldpass)
-       QMessageBox::warning(this, "Ошибка", "Старый пароль введен неверно.");
-   else
-       QMessageBox::warning(this, "Ошибка", "Пароли не совпадают.");
+    else
+        QMessageBox::warning(this, "Ошибка", "Заполните все поля.");
 }
