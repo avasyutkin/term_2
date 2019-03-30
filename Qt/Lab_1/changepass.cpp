@@ -42,7 +42,6 @@ void ChangePass::on_pushButton_clicked()
         {
             passsss.changepass(_newpass);
             passsss.vectortouser("commondb");
-            this->hide();
             QMessageBox::information(this, "Успешно", "Вы сменили пароль.");
         }
         else if (passsss.getpass()!=_oldpass)
@@ -52,4 +51,9 @@ void ChangePass::on_pushButton_clicked()
     }
     else
         QMessageBox::warning(this, "Ошибка", "Заполните все поля.");
+}
+
+void ChangePass::on_pushButton_2_clicked()
+{
+    this->hide();
 }

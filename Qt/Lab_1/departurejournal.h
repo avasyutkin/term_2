@@ -20,6 +20,10 @@ public:
     explicit DepartureJournal(QWidget *parent = nullptr);
     ~DepartureJournal();
 
+private slots:
+    void on_pushButton_4_clicked();
+    void on_pushButton_2_clicked();
+
 private:
     QStandardItemModel *model = new QStandardItemModel;
     QStandardItem *item;

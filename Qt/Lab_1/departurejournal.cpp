@@ -34,3 +34,15 @@ DepartureJournal::~DepartureJournal()
     delete ui;
 }
 
+
+void DepartureJournal::on_pushButton_4_clicked()
+{
+    this->hide();
+}
+
+void DepartureJournal::on_pushButton_2_clicked()
+{
+    ui->tableWidget->sortByColumn(1, Qt::SortOrder::AscendingOrder);
+    ui->tableWidget->horizontalHeader()->setResizeContentsPrecision(0);
+
+}

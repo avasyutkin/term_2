@@ -13,7 +13,7 @@
   <property name="windowTitle">
    <string>Изменить пароль</string>
   </property>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>10</x>
@@ -41,7 +41,11 @@
      </widget>
     </item>
     <item row="1" column="1">
-     <widget class="QLineEdit" name="newpass"/>
+     <widget class="QLineEdit" name="newpass">
+      <property name="echoMode">
+       <enum>QLineEdit::Password</enum>
+      </property>
+     </widget>
     </item>
     <item row="2" column="0">
      <widget class="QLabel" name="label_3">
@@ -51,7 +55,11 @@
      </widget>
     </item>
     <item row="2" column="1">
-     <widget class="QLineEdit" name="newpass3"/>
+     <widget class="QLineEdit" name="newpass3">
+      <property name="echoMode">
+       <enum>QLineEdit::Password</enum>
+      </property>
+     </widget>
     </item>
     <item row="3" column="0">
      <widget class="QPushButton" name="pushButton_2">

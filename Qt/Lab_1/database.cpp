@@ -33,7 +33,6 @@ void DataBase::usertovector(string _tablename)
 
         while(getline(fileS, token, ':'))
         {
-            //cout << token << endl; //токен
             if(k == 0) item.login = token;
             if(k == 1) item.password = token;
             if(k == 2) item.position = token;
@@ -42,7 +41,10 @@ void DataBase::usertovector(string _tablename)
             if(k == 5) item.numberphone = token;
             k++;
         }
-        user.push_back(item);
+        if(!item.login[0] || !item.password[0] || !item.position[0] || !item.name[0] || !item.date[0] || !item.numberphone[0])
+            break;
+        else
+            user.push_back(item);
     }
     file.close();
 }
@@ -82,7 +84,10 @@ void DataBase::journaltovector()
             if(k == 3) item.time = token;
             k++;
         }
-        journaal.push_back(item);
+        if(!item.carmodel[0] || !item.driver[0] || !item.date[0] || !item.time[0])
+            break;
+        else
+            journaal.push_back(item);
     }
     file.close();
 }
