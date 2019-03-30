@@ -35,7 +35,9 @@ SOURCES += \
     driver.cpp \
     database.cpp \
     departurejournal.cpp \
-    writejournal.cpp
+    writejournal.cpp \
+    wiewjournaluser.cpp \
+    changepass.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -47,7 +49,9 @@ HEADERS += \
     driver.h \
     database.h \
     departurejournal.h \
-    writejournal.h
+    writejournal.h \
+    wiewjournaluser.h \
+    changepass.h
 
 FORMS += \
         mainwindow.ui \
@@ -55,7 +59,9 @@ FORMS += \
     windowdriver.ui \
     registration.ui \
     departurejournal.ui \
-    writejournal.ui
+    writejournal.ui \
+    wiewjournaluser.ui \
+    changepass.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

@@ -34,13 +34,7 @@ void registration::on_pushButton_clicked()
     byear=ui->byear->text();
     login=ui->login->text();
     password=ui->password->text();
-    string _name = name.toUtf8().constData();
-    string _bday = bday.toUtf8().constData();
-    string _bmonth = bmonth.toUtf8().constData();
-    string _byear = byear.toUtf8().constData();
-    string _phonenum = phonenum.toUtf8().constData();
-    string _login = login.toUtf8().constData();
-    string _password = password.toUtf8().constData();
+
 
     if(ui->checkBox->isChecked() && ui->checkBox_2->isChecked())
     {
@@ -53,8 +47,8 @@ void registration::on_pushButton_clicked()
         {
 
             Admin _admin;
-            _admin.reg(_name, _bday, _bmonth, _byear, _phonenum, _login, _password, "admin");
-            _admin.reg(_name, _bday, _bmonth, _byear, _phonenum, _login, _password, "commondb");
+            _admin.reg(name, bday, bmonth, byear, phonenum, login, password, "admin");
+            _admin.reg(name, bday, bmonth, byear, phonenum, login, password, "commondb");
             Admin usera(string commondb);
             hide();
             admin=new WindowAdmin(this);
@@ -73,8 +67,8 @@ void registration::on_pushButton_clicked()
         if(name.size()!=0 && login.size()!=0 && password.size()!=0 && bday.size()!=0 && bmonth.size()!=0 && byear.size()!=0 && phonenum.size()!=0)
         {
             Driver _driver;
-            _driver.reg(_name, _bday, _bmonth, _byear, _phonenum, _login, _password, "driver");
-            _driver.reg(_name, _bday, _bmonth, _byear, _phonenum, _login, _password, "commondb");
+            _driver.reg(name, bday, bmonth, byear, phonenum, login, password, "driver");
+            _driver.reg(name, bday, bmonth, byear, phonenum, login, password , "commondb");
             Driver userd(string driver);
             hide();
             driver=new WindowDriver(this);

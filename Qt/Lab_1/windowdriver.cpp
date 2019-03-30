@@ -26,5 +26,4 @@ void WindowDriver::on_pushButton_3_clicked()
     hide();
     DataBase a;
     a.exit();
-
 }

@@ -5,6 +5,8 @@
 #include "database.h"
 #include "person.h"
 #include "departurejournal.h"
+#include "changepass.h"
+#include "wiewjournaluser.h"
 
 namespace Ui {
 class WindowAdmin;
@@ -25,9 +27,13 @@ private slots:
 
     void on_pushButton_5_clicked();
 
+    void on_pushButton_4_clicked();
+
 private:
     Ui::WindowAdmin *ui;
     DepartureJournal *journol;
+    WiewJournalUser *jaurnol;
+    ChangePass *windoww;
 
 };
 

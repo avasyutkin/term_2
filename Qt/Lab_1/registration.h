@@ -46,6 +46,7 @@ private:
     WindowAdmin *admin;
     WindowDriver *driver;
     string dbname;
+    ffile *user;
 };
 
 #endif // REGISTRATION_H

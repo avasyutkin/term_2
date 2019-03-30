@@ -19,9 +19,9 @@ public:
     Driver(string tableName);
     ~Driver();
     void changelp();
-    void writejournal(string _carmodel, string _name, string _dateday, string _datemonth, string _dateyear, string _timehour, string _timeminute);
+    void writejournal(QString _carmodel, QString _name, QString _dateday, QString _datemonth, QString _dateyear, QString _timehour, QString _timeminute);
 private:
-    string jl;
+    QString jl;
     string _tableName;
     ofstream journl;
 };

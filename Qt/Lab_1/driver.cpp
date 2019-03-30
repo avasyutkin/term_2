@@ -7,6 +7,7 @@
 #include <QString>
 #include <string>
 #include "vector"
+#include <QTextStream>
 
 using namespace std;
 
@@ -27,11 +28,13 @@ Driver::~Driver()
 
 }
 
-void Driver::writejournal(string _carmodel, string _name, string _dateday, string _datemonth, string _dateyear, string _timehour, string _timeminute)
+void Driver::writejournal(QString _carmodel, QString _name, QString _dateday, QString _datemonth, QString _dateyear, QString _timehour, QString _timeminute)
 {
     jl = _carmodel+":"+_name+":"+_dateday+"/"+_datemonth+"/"+_dateyear+":"+_timehour+"/"+_timeminute+"\n";
-    journl.open("E:\\181_331_vasyutkin\\vasyutkin_term2\\Qt\\Lab_1\\departurejournal.txt", ios::app);
-    journl<<jl;
-    journl.close();
+    QFile journal("E:\\181_331_vasyutkin\\vasyutkin_term2\\Qt\\Lab_1\\departurejournal.txt");
+    journal.open(QIODevice::Append);
+    QTextStream registS(&journal);
+    registS<<jl;
+    journal.close();
 
 }

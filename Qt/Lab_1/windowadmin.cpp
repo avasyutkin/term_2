@@ -15,7 +15,8 @@ WindowAdmin::~WindowAdmin()
 
 void WindowAdmin::on_pushButton_clicked()
 {
-
+    jaurnol = new WiewJournalUser(this);
+    jaurnol->show();
 }
 
 void WindowAdmin::on_pushButton_2_clicked()
@@ -30,4 +31,10 @@ void WindowAdmin::on_pushButton_5_clicked()
     hide();
     DataBase a;
     a.exit();
+}
+
+void WindowAdmin::on_pushButton_4_clicked()
+{
+    windoww=new ChangePass(this);
+    windoww->show();
 }

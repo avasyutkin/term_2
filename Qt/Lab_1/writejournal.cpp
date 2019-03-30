@@ -3,7 +3,6 @@
 #include <QMessageBox>
 #include "ui_writejournal.h"
 
-
 using namespace std;
 
 WriteJournal::WriteJournal(QWidget *parent) :
@@ -27,17 +26,9 @@ void WriteJournal::on_pushButton_clicked()
     dateday=ui->lineEdit_5->text();
     datemonth=ui->lineEdit_6->text();
     dateyear=ui->lineEdit_7->text();
-    string _carmodel = carmodel.toUtf8().constData();
-    string _name = name.toUtf8().constData();
-    string _dateday = dateday.toUtf8().constData();
-    string _datemonth = datemonth.toUtf8().constData();
-    string _dateyear = dateyear.toUtf8().constData();
-    string _timeminute = timeminute.toUtf8().constData();
-    string _timehour = timehour.toUtf8().constData();
-
 
     Driver driver;
-    driver.writejournal(_carmodel, _name, _dateday, _datemonth, _dateyear, _timehour, _timeminute);
+    driver.writejournal(carmodel, name, dateday, datemonth, dateyear, timehour, timeminute);
     QMessageBox::information(this, "Успешно", "Запись в журнал осуществлена. Счастливого пути!");
     hide();
 }

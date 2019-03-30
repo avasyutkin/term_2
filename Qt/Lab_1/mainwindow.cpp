@@ -5,6 +5,7 @@
 #include "fstream"
 #include "admin.h"
 #include "driver.h"
+#include "database.h"
 #include <QString>
 #include <QMessageBox>
 #include <QFile>
@@ -36,8 +37,10 @@ void MainWindow::on_pushButton_clicked()
             {
 
                 hide();
+                DataBase user;
+                user.chlongpass(_lp);
                 admin = new WindowAdmin(this);
-                Admin userA(string commondb);
+                Admin userA("commondb");
                 admin -> show();
                 autorize.close();
                 break;
@@ -45,8 +48,10 @@ void MainWindow::on_pushButton_clicked()
             if(lpread==_lp+"^driver")
             {
                 hide();
+                DataBase user;
+                user.chlongpass(_lp);
                 driver = new WindowDriver(this);
-                Driver userD(string driver);
+                Driver userD("driver");
                 driver -> show();
                 autorize.close();
                 break;

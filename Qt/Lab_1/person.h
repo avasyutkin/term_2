@@ -17,7 +17,7 @@ class Person
 {
 public:
     Person();
-    void reg(string name, string bday, string bmonth, string byear, string phonenum, string login, string password, string dbname);
+    void reg(QString name, QString bday, QString bmonth, QString byear, QString phonenum, QString login, QString password, QString dbname);
     ~Person();
 private:
     QString login;
@@ -28,9 +28,8 @@ private:
     QString bday;
     QString bmonth;
     QString byear;
-    string lp;
+    QString lp;
     string lpread;
-    ofstream regist;
 };
 
 
