@@ -7,6 +7,8 @@
 #include "departurejournal.h"
 #include "changepass.h"
 #include "wiewjournaluser.h"
+#include "warning.h"
+#include <QMessageBox>
 
 namespace Ui {
 class WindowAdmin;
@@ -29,12 +31,14 @@ private slots:
 
     void on_pushButton_4_clicked();
 
+    void on_pushButton_3_clicked();
+
 private:
     Ui::WindowAdmin *ui;
     DepartureJournal *journol;
     WiewJournalUser *jaurnol;
     ChangePass *windoww;
-
+    vector <ffile> *user;
 };
 
 #endif // WINDOWADMIN_H

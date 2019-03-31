@@ -109,9 +109,8 @@ DataBase DataBase::search(string k, string v){ //тип значения пол�
         ffile item = user.at(i);
         string _name=item.name;
 
-        if(k == "name" && item.name == v){
+        if(k == "name" && item.name == v)
             select.push_back(item);
-        }
     }
     return select;
 }

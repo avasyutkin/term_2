@@ -46,3 +46,10 @@ void DepartureJournal::on_pushButton_2_clicked()
     ui->tableWidget->horizontalHeader()->setResizeContentsPrecision(0);
 
 }
+
+
+void DepartureJournal::on_pushButton_3_clicked()
+{
+    //dt = ui->lineEdit->text();
+
+}

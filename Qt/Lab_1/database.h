@@ -39,6 +39,7 @@ public:
     void vectortouser(string tableName);
     void changepass(string newpasss);
     DataBase search(string k, string v);
+    DataBase searchJournal(string k, string va);
     void push_back(ffile item);
     ~DataBase();
     void exit();
