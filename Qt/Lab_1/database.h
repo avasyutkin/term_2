@@ -7,6 +7,7 @@
 #include <QString>
 #include <string>
 #include "vector"
+#include "string.h"
 
 using namespace std;
 
@@ -33,12 +34,12 @@ public:
     DataBase();
     string rlongpass();
     void chlongpass(string _logpass);
-    string getpass();
+    string getpass(string a);
     DataBase(string tableName);
     void usertovector(string tableName);
     void vectortouser(string tableName);
-    void changepass(string newpasss);
-    DataBase search(string k, string v);
+    void changepass(string a, string newpasss);
+    //void search(string v);
     DataBase searchJournal(string k, string va);
     void push_back(ffile item);
     ~DataBase();

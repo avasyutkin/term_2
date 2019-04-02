@@ -55,7 +55,7 @@ void DataBase::vectortouser(string _tablename){
     if (User.open(QIODevice::WriteOnly))
     {
         QTextStream UserS(&User);
-        for (unsigned i = 0; i < user.size()-1; i++)
+        for (unsigned i = 0; i < user.size(); i++)
             UserS << QString::fromLocal8Bit(user.at(i).login.c_str()) << ':' << QString::fromLocal8Bit(user.at(i).password.c_str()) << ':' << QString::fromLocal8Bit(user.at(i).position.c_str()) << ':' << QString::fromLocal8Bit(user.at(i).name.c_str()) << ':' << QString::fromLocal8Bit(user.at(i).date.c_str()) << ':' << QString::fromLocal8Bit(user.at(i).numberphone.c_str()) << "\r\n";
         User.close();
     }
@@ -103,17 +103,27 @@ void DataBase::push_back(ffile item)
     user.push_back(item);
 }
 
-DataBase DataBase::search(string k, string v){ //тип значения поля - string
-    DataBase select;
-    for (unsigned i = 0; i < user.size(); i++){
-        ffile item = user.at(i);
-        string _name=item.name;
+//void DataBase::search(string v)
+//{
+//    DataBase select;
+//    for (unsigned i = 0; i < user.size(); i++)
+//    {
+//        ffile item = user.at(i);
+//        string a = user.at(i).date;
+//        string bb = user.at(i).numberphone;
+//        ffile a;
+//        ffile b;
+//        ffile c;
+//        a.name.at(i);
+//        b.date.at(i);
+//        c.date.at(i);
 
-        if(k == "name" && item.name == v)
-            select.push_back(item);
-    }
-    return select;
-}
+//           //if(item.name == v)
+//            //select.push_back(a);
+//            //select.push_back(b);
+//            //select.push_back(c);
+//    }
+//}
 
 DataBase::~DataBase()
 {
@@ -182,16 +192,23 @@ void DataBase::chlongpass(string _logpass)
     logpass = _logpass;
 }
 
-string DataBase::getpass()
+string DataBase::getpass(string a)
 {
     for(unsigned i=0; i<user.size(); i++)
-        if (rlongpass()==(user.at(i).login+":"+user.at(i).password))
+    {
+        if (a == "login" && rlongpass()==(user.at(i).login+":"+user.at(i).password))
+            return user.at(i).login;
+        if (a == "password" && rlongpass()==(user.at(i).login+":"+user.at(i).password))
             return user.at(i).password;
+    }
 }
 
-void DataBase::changepass(string newpasss)
+void DataBase::changepass(string a, string newpasss)
 {
-    for(unsigned i=0; i<user.size(); i++)
-        if (rlongpass()==(user.at(i).login+":"+user.at(i).password))
+    for(unsigned i=0; i<user.size(); i++){
+        if (a == "login" && rlongpass()==(user.at(i).login+":"+user.at(i).password))
+            user.at(i).login=newpasss;
+        if (a == "password" && rlongpass()==(user.at(i).login+":"+user.at(i).password))
             user.at(i).password=newpasss;
+    }
 }

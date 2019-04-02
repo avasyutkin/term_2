@@ -5,6 +5,7 @@
 #include "fstream"
 #include "windowadmin.h"
 #include "windowdriver.h"
+#include "database.h"
 #include "person.h"
 #include <QMainWindow>
 #include <QFile>
@@ -28,6 +29,8 @@ public:
 private slots:
     void on_pushButton_clicked();
 
+    void on_pushButton_2_clicked();
+
 private:
     Ui::MainWindow *ui;
     QString login;
@@ -38,6 +41,7 @@ private:
     ifstream autorize;
     WindowAdmin *admin;
     WindowDriver *driver;
+    //registration *regist;
 };
 
 

@@ -83,3 +83,10 @@ void MainWindow::on_pushButton_clicked()
         }
     }
 }
+
+void MainWindow::on_pushButton_2_clicked()
+{
+    this->hide();
+    registration *reg = new registration(this);
+    reg->show();
+}

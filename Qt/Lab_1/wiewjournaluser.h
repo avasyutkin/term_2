@@ -20,11 +20,17 @@ public:
     explicit WiewJournalUser(QWidget *parent = nullptr);
     ~WiewJournalUser();
 
+private slots:
+    void on_pushButton_clicked();
+
+    void on_pushButton_2_clicked();
+
 private:
     Ui::WiewJournalUser *ui;
     QStandardItemModel *model = new QStandardItemModel;
     QStandardItem *item;
     QStringList horizontalHeader;
+    QString person;
 };
 
 #endif // WIEWJOURNALUSER_H
