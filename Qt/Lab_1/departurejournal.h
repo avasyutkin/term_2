@@ -29,7 +29,7 @@ private:
     QStandardItemModel *model = new QStandardItemModel;
     QStandardItem *item;
     QStringList horizontalHeader;
-    Ui::DepartureJournal *ui;    
+    Ui::DepartureJournal *ui;
     QString dt;
 };
 

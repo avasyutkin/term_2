@@ -12,11 +12,11 @@
 using namespace std;
 
 struct ffile{
-    string login; //0
-    string password; //2
-    string name; //1
-    string date; //3
-    string numberphone; //4
+    string login;
+    string password;
+    string name;
+    string date;
+    string numberphone;
     string position;
 };
 
@@ -30,6 +30,7 @@ struct journal{
 class DataBase
 {
     static string logpass;
+
 public:
     DataBase();
     string rlongpass();
@@ -63,11 +64,11 @@ public:
     string getDJournalSearchName(string v, int a);
     string getDJournalSearchTime(string v, int a);
     int getDJouralSearchSize(string v);
+
 private:
     string _tableName;
     vector <ffile> user;
     vector <journal> journaal;
 };
-
 
 #endif // DATABASE_H

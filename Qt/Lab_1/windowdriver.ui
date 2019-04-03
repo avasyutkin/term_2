@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>341</width>
-    <height>233</height>
+    <height>200</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -44,13 +44,6 @@
       <widget class="QPushButton" name="pushButton_2">
        <property name="text">
         <string>Сменить логин или пароль</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="pushButton_4">
-       <property name="text">
-        <string>Уволиться</string>
        </property>
       </widget>
      </item>

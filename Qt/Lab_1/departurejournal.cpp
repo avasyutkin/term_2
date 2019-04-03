@@ -25,7 +25,6 @@ DepartureJournal::DepartureJournal(QWidget *parent) :
         ui->tableWidget->setItem(i, 1, b);
         ui->tableWidget->setItem(i, 2, c);
         ui->tableWidget->setItem(i, 3, d);
-
     };
 }
 
@@ -46,7 +45,6 @@ void DepartureJournal::on_pushButton_2_clicked()
     ui->tableWidget->sortByColumn(1, Qt::SortOrder::AscendingOrder);
     ui->tableWidget->horizontalHeader()->setResizeContentsPrecision(0);
 }
-
 
 void DepartureJournal::on_pushButton_3_clicked()
 {
@@ -71,6 +69,5 @@ void DepartureJournal::on_pushButton_3_clicked()
         ui->tableWidget->setItem(i, 1, b);
         ui->tableWidget->setItem(i, 2, c);
         ui->tableWidget->setItem(i, 3, d);
-
     };
 }

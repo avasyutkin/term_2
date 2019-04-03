@@ -20,6 +20,7 @@ public:
     ~Driver();
     void changelp();
     void writejournal(QString _carmodel, QString _name, QString _dateday, QString _datemonth, QString _dateyear, QString _timehour, QString _timeminute);
+
 private:
     QString jl;
     string _tableName;

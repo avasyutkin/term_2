@@ -50,7 +50,6 @@ void registration::on_pushButton_clicked()
             _admin.reg(name, bday, bmonth, byear, phonenum, login, password, "21232f297a57a5a743894a0e4a801fc3", "admin");
             Admin usera(string commondb);
             hide();
-            delete this;
             admin=new WindowAdmin(this);
             admin->show();
 
@@ -70,7 +69,6 @@ void registration::on_pushButton_clicked()
             _driver.reg(name, bday, bmonth, byear, phonenum, login, password, "e2d45d57c7e2941b65c6ccd64af4223e", "driver");
             Driver userd(string driver);
             hide();
-            delete this;
             driver=new WindowDriver(this);
             driver->show();
         }

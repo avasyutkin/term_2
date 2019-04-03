@@ -28,7 +28,6 @@ public:
 
 private slots:
     void on_pushButton_clicked();
-
     void on_pushButton_2_clicked();
 
 private:
@@ -41,8 +40,6 @@ private:
     ifstream autorize;
     WindowAdmin *admin;
     WindowDriver *driver;
-    //registration *regist;
 };
-
 
 #endif // MAINWINDOW_H

@@ -19,6 +19,7 @@ public:
     Person();
     void reg(QString name, QString bday, QString bmonth, QString byear, QString phonenum, QString login, QString password, QString position, QString dbname);
     ~Person();
+
 private:
     QString login;
     QString info;
@@ -31,7 +32,5 @@ private:
     QString lp;
     string lpread;
 };
-
-
 
 #endif // PERSON_H
