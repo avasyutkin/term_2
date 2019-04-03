@@ -23,9 +23,10 @@ void WindowDriver::on_pushButton_clicked()
 
 void WindowDriver::on_pushButton_3_clicked()
 {
-    hide();
+    close();
     DataBase a;
     a.exit();
+    delete this;
 }
 
 void WindowDriver::on_pushButton_5_clicked()

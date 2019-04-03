@@ -37,19 +37,40 @@ DepartureJournal::~DepartureJournal()
 
 void DepartureJournal::on_pushButton_4_clicked()
 {
-    this->hide();
+    this->close();
+    delete this;
 }
 
 void DepartureJournal::on_pushButton_2_clicked()
 {
     ui->tableWidget->sortByColumn(1, Qt::SortOrder::AscendingOrder);
     ui->tableWidget->horizontalHeader()->setResizeContentsPrecision(0);
-
 }
 
 
 void DepartureJournal::on_pushButton_3_clicked()
 {
-    //dt = ui->lineEdit->text();
+    ui->tableWidget->clear();
+    dt = ui->lineEdit->text();
+    DataBase journal;
+    journal.journaltovector();
+    string _dt=dt.toLocal8Bit().constData();
+    ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    ui->tableWidget->setColumnCount(4);
+    ui->tableWidget->setHorizontalHeaderLabels(QStringList() << "Автомобиль" << "Водитель" << "Дата" << "Время");
+    ui->tableWidget->setRowCount(journal.getDJouralSearchSize(_dt));
+    ui->tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    for(int i=0; i<ui->tableWidget->rowCount(); i++)
+    {
+        QTableWidgetItem *a = new QTableWidgetItem(QString::fromLocal8Bit(journal.getDJournalSearchCar(_dt, i).c_str()));
+        QTableWidgetItem *b = new QTableWidgetItem(QString::fromLocal8Bit(journal.getDJournalSearchName(_dt, i).c_str()));
+        QTableWidgetItem *c = new QTableWidgetItem(QString::fromLocal8Bit(journal.getDJournalSearchDate(_dt, i).c_str()));
+        QTableWidgetItem *d = new QTableWidgetItem(QString::fromLocal8Bit(journal.getDJournalSearchTime(_dt, i).c_str()));
 
+        ui->tableWidget->setItem(i, 0, a);
+        ui->tableWidget->setItem(i, 1, b);
+        ui->tableWidget->setItem(i, 2, c);
+        ui->tableWidget->setItem(i, 3, d);
+
+    };
 }

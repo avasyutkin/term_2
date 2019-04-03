@@ -28,7 +28,13 @@ void WriteJournal::on_pushButton_clicked()
     dateyear=ui->lineEdit_7->text();
 
     Driver driver;
-    driver.writejournal(carmodel, name, dateday, datemonth, dateyear, timehour, timeminute);
-    QMessageBox::information(this, "Успешно", "Запись в журнал осуществлена. Счастливого пути!");
-    hide();
+    if (carmodel.size() == 0 || name.size() == 0 || timehour.size() == 0 || timeminute.size() == 0 || dateday.size() == 0|| datemonth.size() == 0 || dateyear.size() == 0)
+        QMessageBox::warning(this, "Ошибка", "Заполните все поля.");
+    else
+    {
+        driver.writejournal(carmodel, name, dateday, datemonth, dateyear, timehour, timeminute);
+        QMessageBox::information(this, "Успешно", "Запись в журнал осуществлена. Счастливого пути!");
+        close();
+        delete this;
+    }
 }

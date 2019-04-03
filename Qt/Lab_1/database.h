@@ -39,7 +39,6 @@ public:
     void usertovector(string tableName);
     void vectortouser(string tableName);
     void changepass(string a, string newpasss);
-    //void search(string v);
     DataBase searchJournal(string k, string va);
     void push_back(ffile item);
     ~DataBase();
@@ -55,6 +54,15 @@ public:
     string getJournalUserName(int i);
     string getJournalUserDate(int i);
     string getJournalUserPhonenumber(int i);
+    string getJournalSearchName(string v);
+    string getJournalSearchDate(string v);
+    string getJournalSearchNump(string v);
+    int getJouralSearchSize(string v);
+    string getDJournalSearchDate(string v, int a);
+    string getDJournalSearchCar(string v, int a);
+    string getDJournalSearchName(string v, int a);
+    string getDJournalSearchTime(string v, int a);
+    int getDJouralSearchSize(string v);
 private:
     string _tableName;
     vector <ffile> user;

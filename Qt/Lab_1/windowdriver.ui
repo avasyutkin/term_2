@@ -43,7 +43,7 @@
      <item>
       <widget class="QPushButton" name="pushButton_2">
        <property name="text">
-        <string>Сменить логин и пароль</string>
+        <string>Сменить логин или пароль</string>
        </property>
       </widget>
      </item>

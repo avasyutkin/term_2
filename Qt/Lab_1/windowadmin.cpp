@@ -32,9 +32,10 @@ void WindowAdmin::on_pushButton_2_clicked()
 
 void WindowAdmin::on_pushButton_5_clicked()
 {
-    hide();
+    close();
     DataBase a;
     a.exit();
+    delete this;
 }
 
 void WindowAdmin::on_pushButton_4_clicked()
@@ -47,7 +48,7 @@ void WindowAdmin::on_pushButton_3_clicked()
 {
     int button = QMessageBox::question(this,
                                        QString ("Подтверждение увольнения"),
-                                       QString ("ВЫ УВЕРЕНЫ, ЧТО ХОТИТЕ УВОЛИТЬ ВСЕХ СОТРУДНИКОВ? ДАННОЕ ДЕЙСТВИЕ НЕЛЬЗЯ ОТМЕНИТЬ. Подтверждая данное действие вы соглашаетесь с тем, что больше не будете директором данной компании."),
+                                       QString ("ВЫ УВЕРЕНЫ, ЧТО ХОТИТЕ УВОЛИТЬ ВСЕХ СОТРУДНИКОВ? ДАННОЕ ДЕЙСТВИЕ НЕЛЬЗЯ ОТМЕНИТЬ.\r\nПодтверждая данное действие вы соглашаетесь с тем, что больше не будете директором данной компании."),
                                        QMessageBox::Yes | QMessageBox::No);
     if (button == QMessageBox::Yes)
      {

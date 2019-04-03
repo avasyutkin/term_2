@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Изменить пароль</string>
+   <string>Изменить логин или пароль</string>
   </property>
   <widget class="Line" name="line">
    <property name="geometry">
@@ -110,7 +110,7 @@
     <string>Сменить пароль</string>
    </property>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>20</x>
@@ -168,7 +168,7 @@
     </item>
    </layout>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>220</x>

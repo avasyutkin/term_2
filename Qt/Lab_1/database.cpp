@@ -29,7 +29,6 @@ void DataBase::usertovector(string _tablename)
 
         int k = 0;
         istringstream fileS(str);
-        //string _token=token.toUtf8().constData();
 
         while(getline(fileS, token, ':'))
         {
@@ -77,7 +76,6 @@ void DataBase::journaltovector()
 
         while(getline(fileS, token, ':'))
         {
-            //cout << token << endl; //токен
             if(k == 0) item.carmodel = token;
             if(k == 1) item.driver = token;
             if(k == 2) item.date = token;
@@ -103,28 +101,6 @@ void DataBase::push_back(ffile item)
     user.push_back(item);
 }
 
-//void DataBase::search(string v)
-//{
-//    DataBase select;
-//    for (unsigned i = 0; i < user.size(); i++)
-//    {
-//        ffile item = user.at(i);
-//        string a = user.at(i).date;
-//        string bb = user.at(i).numberphone;
-//        ffile a;
-//        ffile b;
-//        ffile c;
-//        a.name.at(i);
-//        b.date.at(i);
-//        c.date.at(i);
-
-//           //if(item.name == v)
-//            //select.push_back(a);
-//            //select.push_back(b);
-//            //select.push_back(c);
-//    }
-//}
-
 DataBase::~DataBase()
 {
 
@@ -133,6 +109,93 @@ DataBase::~DataBase()
 void DataBase::exit()
 {
     user.clear();
+}
+
+string DataBase::getJournalSearchName(string v)
+{
+    for (unsigned i = 0; i < user.size(); i++)
+        if(user.at(i).name == v)
+            return user.at(i).name;
+}
+
+string DataBase::getJournalSearchDate(string v)
+{
+    for (unsigned i = 0; i < user.size(); i++)
+        if(user.at(i).name == v)
+            return user.at(i).date;
+}
+
+int DataBase::getJouralSearchSize(string v)
+{
+    int a = 0;
+    for (unsigned i = 0; i<user.size(); i++)
+    {
+        if (user.at(i).name == v)
+            a++;
+    }
+    return a;
+}
+
+string DataBase::getJournalSearchNump(string v)
+{
+    for (unsigned i = 0; i < user.size(); i++)
+        if(user.at(i).name == v)
+            return user.at(i).numberphone;
+}
+
+string DataBase::getDJournalSearchDate(string v, int a)
+{
+    int _i = -1;
+    for (unsigned i = 0; i < journaal.size(); i++){
+        if(journaal.at(i).date == v)
+            _i++;
+        if (a == _i)
+            return journaal.at(i).date;
+    }
+}
+
+string DataBase::getDJournalSearchCar(string v, int a)
+{
+    int _i = -1;
+    for (unsigned i = 0; i < journaal.size(); i++){
+        if(journaal.at(i).date == v)
+            _i++;
+        if (a == _i)
+            return journaal.at(i).carmodel;
+    }
+}
+
+string DataBase::getDJournalSearchName(string v, int a)
+{
+    int _i = -1;
+    for (unsigned i = 0; i < journaal.size(); i++){
+        if(journaal.at(i).date == v)
+            _i++;
+        if (a == _i)
+            return journaal.at(i).driver;
+    }
+}
+
+string DataBase::getDJournalSearchTime(string v, int a)
+{
+    int _i = -1;
+    for (unsigned i = 0; i < journaal.size(); i++){
+        if(journaal.at(i).date == v)
+            _i++;
+        if (a == _i)
+            return journaal.at(i).time;
+    }
+}
+
+int DataBase::getDJouralSearchSize(string v)
+{
+    int a = 0;
+    for (unsigned i = 0; i<journaal.size(); i++)
+    {
+        if (journaal.at(i).date == v)
+            a++;
+    }
+    return a;
 }
 
 int DataBase::getJournalSize()
