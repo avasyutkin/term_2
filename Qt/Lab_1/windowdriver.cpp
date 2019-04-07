@@ -29,11 +29,6 @@ void WindowDriver::on_pushButton_3_clicked()
     delete this;
 }
 
-void WindowDriver::on_pushButton_5_clicked()
-{
-
-}
-
 void WindowDriver::on_pushButton_2_clicked()
 {
     windoww=new ChangePass(this);

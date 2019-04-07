@@ -51,7 +51,7 @@ void ChangePass::on_pushButton_2_clicked()
                 passsss.changepass("password", _newpass);
                 passsss.vectortouser("commondb");
                 QMessageBox::information(this, "Успешно", "Вы сменили пароль.");
-                delete this;
+                this->hide();
             }
             else if (passsss.getpass("password")!=_oldpass)
                 QMessageBox::warning(this, "Ошибка", "Старый пароль введен неверно.");
@@ -73,7 +73,7 @@ void ChangePass::on_pushButton_2_clicked()
                 passsss.changepass("login", _newlogin);
                 passsss.vectortouser("commondb");
                 QMessageBox::information(this, "Успешно", "Вы сменили логин.");
-                delete this;
+                this->hide();
             }
             else if (passsss.getpass("password")!=_pass)
                 QMessageBox::information(this, "Ошибка", "Пароль введен неверно.");

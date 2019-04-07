@@ -51,7 +51,7 @@ void WindowAdmin::on_pushButton_3_clicked()
                                        QString ("ВЫ УВЕРЕНЫ, ЧТО ХОТИТЕ УВОЛИТЬ ВСЕХ СОТРУДНИКОВ? ДАННОЕ ДЕЙСТВИЕ НЕЛЬЗЯ ОТМЕНИТЬ.\r\nПодтверждая данное действие вы соглашаетесь с тем, что больше не будете директором данной компании."),
                                        QMessageBox::Yes | QMessageBox::No);
     if (button == QMessageBox::Yes)
-     {
+    {
         QMessageBox::information(this, "Игра окончена", "Ваша компания скоро обанкротится.");
 
         QFile fileall("E:\\181_331_vasyutkin\\vasyutkin_term2\\Qt\\Lab_1\\commondb.txt");
@@ -62,8 +62,9 @@ void WindowAdmin::on_pushButton_3_clicked()
         fileall2.remove();
         QFile fileall3("E:\\181_331_vasyutkin\\vasyutkin_term2\\Qt\\Lab_1\\departurejournal.txt");
         fileall3.remove();
+        this->close();
 
-     }
-     else
-         QMessageBox::information(this, "Поздравляем", "Вы очень умны, Вы не дали обанкротиться Вашей компании.");
+    }
+    else
+        QMessageBox::information(this, "Поздравляем", "Вы очень умны, Вы не дали обанкротиться Вашей компании.");
 }
