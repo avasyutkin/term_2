@@ -20,10 +20,12 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 }
+
 MainWindow::~MainWindow()
 {
     delete ui;
 }
+
 void MainWindow::on_pushButton_clicked()
 {
     login=ui->login->text();
@@ -52,10 +54,10 @@ void MainWindow::on_pushButton_clicked()
         }
         if(lpread==_lp+":21232f297a57a5a743894a0e4a801fc3")
         {
-
             hide();
             DataBase user;
             user.chlongpass(_lp);
+            user.changeID(item.id);
             admin = new WindowAdmin(this);
             Admin userA("commondb");
             admin -> show();
@@ -67,6 +69,7 @@ void MainWindow::on_pushButton_clicked()
             hide();
             DataBase user;
             user.chlongpass(_lp);
+            user.changeID(item.id);
             driver = new WindowDriver(this);
             Driver userD("driver");
             driver -> show();
@@ -91,3 +94,4 @@ void MainWindow::on_pushButton_2_clicked()
     registration *reg = new registration(this);
     reg->show();
 }
+

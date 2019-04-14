@@ -9,7 +9,5 @@ int main(int argc, char *argv[])
     registration w;
     w.show();
 
-
-
     a.exec();
 }

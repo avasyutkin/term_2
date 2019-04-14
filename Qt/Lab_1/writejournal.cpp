@@ -20,7 +20,8 @@ WriteJournal::~WriteJournal()
 void WriteJournal::on_pushButton_clicked()
 {
     carmodel=ui->lineEdit->text();
-    name=ui->lineEdit_2->text();
+    DataBase a;
+    a.usertovector("commondb");
     QDate date = QDate::currentDate();
     QTime time = QTime::currentTime();
     date.toString("dd.MM.yyyy");
@@ -29,11 +30,11 @@ void WriteJournal::on_pushButton_clicked()
     QString Time = time.toString("hh/mm");
 
     Driver driver;
-    if (carmodel.size() == 0 || name.size() == 0 || Time.size() == 0 || Date.size() == 0)
-        QMessageBox::warning(this, "Ошибка", "Заполните все поля.");
+    if (carmodel.size() == 0)
+        QMessageBox::warning(this, "Ошибка", "Введите марку автомобиля, на котором хотите отправиться в рейс.");
     else
     {
-        driver.writejournal(id, carmodel, name, Date, Time);
+        driver.writejournal(QString::fromLocal8Bit(a.returnID().c_str()), carmodel, QString::fromLocal8Bit(a.SearchNameByID().c_str()), Date, Time);
         QMessageBox::information(this, "Успешно", "Запись в журнал осуществлена. Счастливого пути!");
         close();
         delete this;

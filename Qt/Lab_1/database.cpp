@@ -56,11 +56,10 @@ void DataBase::vectortouser(string _tablename){
     {
         QTextStream UserS(&User);
         for (unsigned i = 0; i < user.size(); i++)
-            UserS << QString::fromLocal8Bit(user.at(i).login.c_str()) << ':' << QString::fromLocal8Bit(user.at(i).password.c_str()) << ':' << QString::fromLocal8Bit(user.at(i).position.c_str()) << ':' << QString::fromLocal8Bit(user.at(i).name.c_str()) << ':' << QString::fromLocal8Bit(user.at(i).date.c_str()) << ':' << QString::fromLocal8Bit(user.at(i).numberphone.c_str()) << "\r\n";
+            UserS <<QString::fromLocal8Bit(user.at(i).id.c_str()) << ":" << QString::fromLocal8Bit(user.at(i).login.c_str()) << ':' << QString::fromLocal8Bit(user.at(i).password.c_str()) << ':' << QString::fromLocal8Bit(user.at(i).position.c_str()) << ':' << QString::fromLocal8Bit(user.at(i).name.c_str()) << ':' << QString::fromLocal8Bit(user.at(i).date.c_str()) << ':' << QString::fromLocal8Bit(user.at(i).numberphone.c_str()) << "\r\n";
         User.close();
     }
 }
-
 
 void DataBase::journaltovector()
 {
@@ -267,6 +266,25 @@ void DataBase::chlongpass(string _logpass)
     logpass = _logpass;
 }
 
+string DataBase::ID;
+
+string DataBase::returnID()
+{
+    return ID;
+}
+
+void DataBase::changeID(string _ID)
+{
+    ID = _ID;
+}
+
+string DataBase::SearchNameByID()
+{
+    for (unsigned i = 0; i < user.size(); i++)
+        if(user.at(i).id == returnID())
+            return user.at(i).name;
+}
+
 string DataBase::getpass(string a)
 {
     for(unsigned i=0; i<user.size(); i++)
@@ -287,3 +305,4 @@ void DataBase::changepass(string a, string newpasss)
             user.at(i).password=newpasss;
     }
 }
+

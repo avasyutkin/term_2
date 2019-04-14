@@ -11,7 +11,7 @@ DepartureJournal::DepartureJournal(QWidget *parent) :
     journal.journaltovector();
     ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
     ui->tableWidget->setColumnCount(4);
-    ui->tableWidget->setHorizontalHeaderLabels(QStringList() << "Автомобиль" << "Водитель" << "Дата" << "Время");
+    ui->tableWidget->setHorizontalHeaderLabels(QStringList() << "Автомобиль" << "Водитель(ID)" << "Дата" << "Время");
     ui->tableWidget->setRowCount(journal.getJournalSize());
     ui->tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     for(int i=0; i<ui->tableWidget->rowCount(); i++)

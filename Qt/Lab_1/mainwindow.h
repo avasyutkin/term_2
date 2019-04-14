@@ -41,6 +41,8 @@ private:
     ifstream autorize;
     WindowAdmin *admin;
     WindowDriver *driver;
+    DataBase *ID;
+    string getID(DataBase *ID);
 };
 
 #endif // MAINWINDOW_H

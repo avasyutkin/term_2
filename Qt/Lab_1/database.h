@@ -31,6 +31,7 @@ struct journal{
 class DataBase
 {
     static string logpass;
+    static string ID;
 
 public:
     DataBase();
@@ -67,6 +68,9 @@ public:
     string getDJournalSearchName(string v, int a);
     string getDJournalSearchTime(string v, int a);
     int getDJouralSearchSize(string v);
+    string returnID();
+    string SearchNameByID();
+    void changeID(string _ID);
 
 private:
     string _tableName;
