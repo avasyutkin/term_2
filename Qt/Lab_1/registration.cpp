@@ -45,9 +45,16 @@ void registration::on_pushButton_clicked()
     {
         if(name.size()!=0 && login.size()!=0 && password.size()!=0 && bday.size()!=0 && bmonth.size()!=0 && byear.size()!=0 && phonenum.size()!=0)
         {
-
+            string a;
+            int idd = 0;
+            ifstream commondb;
+            commondb.open("E:\\181_331_vasyutkin\\vasyutkin_term2\\Qt\\Lab_1\\commondb.txt");
+            while (getline(commondb, a,'\n'))
+                idd++;
+            idd = idd+1;
+            QString id = QString::number(idd);
             Admin _admin;
-            _admin.reg(name, bday, bmonth, byear, phonenum, login, password, "21232f297a57a5a743894a0e4a801fc3", "admin");
+            _admin.reg(id, name, bday, bmonth, byear, phonenum, login, password, "21232f297a57a5a743894a0e4a801fc3", "admin");
             Admin usera(string commondb);
             hide();
             QMessageBox::information(this, "Успешно", "Вы зарегистрировались в системе, теперь войдите в свой аккаунт.");
@@ -66,8 +73,16 @@ void registration::on_pushButton_clicked()
     {
         if(name.size()!=0 && login.size()!=0 && password.size()!=0 &&  bday.size()!=0 && bmonth.size()!=0 && byear.size()!=0 && phonenum.size()!=0)
         {
+            string a;
+            int idd = 0;
+            ifstream commondb;
+            commondb.open("E:\\181_331_vasyutkin\\vasyutkin_term2\\Qt\\Lab_1\\commondb.txt");
+            while (getline(commondb, a,'\n'))
+                idd++;
+            idd = idd+1;
+            QString id = QString::number(idd);
             Driver _driver;
-            _driver.reg(name, bday, bmonth, byear, phonenum, login, password, "e2d45d57c7e2941b65c6ccd64af4223e", "driver");
+            _driver.reg(id, name, bday, bmonth, byear, phonenum, login, password, "e2d45d57c7e2941b65c6ccd64af4223e", "driver");
             Driver userd(string driver);
             hide();
             QMessageBox::information(this, "Успешно", "Вы зарегистрировались в системе, теперь войдите в свой аккаунт.");

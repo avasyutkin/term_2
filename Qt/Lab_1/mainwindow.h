@@ -32,6 +32,7 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
+    QString id;
     QString login;
     QString password;
     QString name;

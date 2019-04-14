@@ -17,7 +17,7 @@ class Person
 {
 public:
     Person();
-    void reg(QString name, QString bday, QString bmonth, QString byear, QString phonenum, QString login, QString password, QString position, QString dbname);
+    void reg(QString id, QString name, QString bday, QString bmonth, QString byear, QString phonenum, QString login, QString password, QString position, QString dbname);
     ~Person();
 
 private:

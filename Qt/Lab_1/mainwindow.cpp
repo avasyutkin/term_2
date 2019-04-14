@@ -40,12 +40,13 @@ void MainWindow::on_pushButton_clicked()
         istringstream fileS(str);
         while(getline(fileS, token, ':'))
         {
-            if(k == 0) item.login = token;
-            if(k == 1) item.password = token;
-            if(k == 2) item.position = token;
-            if(k == 3) item.name = token;
-            if(k == 4) item.date = token;
-            if(k == 5) item.numberphone = token;
+            if(k == 0) item.id = token;
+            if(k == 1) item.login = token;
+            if(k == 2) item.password = token;
+            if(k == 3) item.position = token;
+            if(k == 4) item.name = token;
+            if(k == 5) item.date = token;
+            if(k == 6) item.numberphone = token;
             k++;
             lpread = item.login+':'+item.password+':'+item.position;
         }

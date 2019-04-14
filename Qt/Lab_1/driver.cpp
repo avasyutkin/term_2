@@ -28,9 +28,9 @@ Driver::~Driver()
 
 }
 
-void Driver::writejournal(QString _carmodel, QString _name, QString _dateday, QString _datemonth, QString _dateyear, QString _timehour, QString _timeminute)
+void Driver::writejournal(QString _id, QString _carmodel, QString _name, QString _date, QString _time)
 {
-    jl = _carmodel+":"+_name+":"+_dateday+"/"+_datemonth+"/"+_dateyear+":"+_timehour+"/"+_timeminute+"\n";
+    jl = _carmodel+":"+_name+"("+_id+")"+":"+_date+":"+_time+"\n";
     QFile journal("E:\\181_331_vasyutkin\\vasyutkin_term2\\Qt\\Lab_1\\departurejournal.txt");
     journal.open(QIODevice::Append);
     QTextStream registS(&journal);

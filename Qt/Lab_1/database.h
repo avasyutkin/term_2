@@ -12,6 +12,7 @@
 using namespace std;
 
 struct ffile{
+    string id;
     string login;
     string password;
     string name;
@@ -58,6 +59,8 @@ public:
     string getJournalSearchName(string v);
     string getJournalSearchDate(string v);
     string getJournalSearchNump(string v);
+    string getJournalSearchID(string v);
+    string getJournalUserID(int i);
     int getJouralSearchSize(string v);
     string getDJournalSearchDate(string v, int a);
     string getDJournalSearchCar(string v, int a);

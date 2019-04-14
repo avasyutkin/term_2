@@ -4,6 +4,7 @@
 #include <QDialog>
 #include "driver.h"
 #include <string>
+#include <QDate>
 
 namespace Ui {
 class WriteJournal;
@@ -23,12 +24,10 @@ private slots:
 private:
     Ui::WriteJournal *ui;
     QString carmodel;
-    QString dateday;
-    QString datemonth;
-    QString dateyear;
-    QString timehour;
-    QString timeminute;
+    QString date;
     QString name;
+    QString id;
+    QTime time;
 };
 
 #endif // WRITEJOURNAL_H

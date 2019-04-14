@@ -32,15 +32,16 @@ void DataBase::usertovector(string _tablename)
 
         while(getline(fileS, token, ':'))
         {
-            if(k == 0) item.login = token;
-            if(k == 1) item.password = token;
-            if(k == 2) item.position = token;
-            if(k == 3) item.name = token;
-            if(k == 4) item.date = token;
-            if(k == 5) item.numberphone = token;
+            if(k == 0) item.id = token;
+            if(k == 1) item.login = token;
+            if(k == 2) item.password = token;
+            if(k == 3) item.position = token;
+            if(k == 4) item.name = token;
+            if(k == 5) item.date = token;
+            if(k == 6) item.numberphone = token;
             k++;
         }
-        if(!item.login[0] || !item.password[0] || !item.position[0] || !item.name[0] || !item.date[0] || !item.numberphone[0])
+        if(!item.id[0] || !item.login[0] || !item.password[0] || !item.position[0] || !item.name[0] || !item.date[0] || !item.numberphone[0])
             break;
         else
             user.push_back(item);
@@ -143,6 +144,12 @@ string DataBase::getJournalSearchNump(string v)
             return user.at(i).numberphone;
 }
 
+string DataBase::getJournalSearchID(string v)
+{
+    for (unsigned i = 0; i < user.size(); i++)
+        if(user.at(i).name == v)
+            return user.at(i).id;
+}
 string DataBase::getDJournalSearchDate(string v, int a)
 {
     int _i = -1;
@@ -241,6 +248,11 @@ string DataBase::getJournalUserDate(int i)
 string DataBase::getJournalUserPhonenumber(int i)
 {
     return user.at(i).numberphone;
+}
+
+string DataBase::getJournalUserID(int i)
+{
+    return user.at(i).id;
 }
 
 string DataBase::logpass;

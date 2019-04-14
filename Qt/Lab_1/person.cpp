@@ -19,15 +19,15 @@ Person::Person()
 
 }
 
-void Person::reg(QString name, QString bday, QString bmonth, QString byear, QString phonenum, QString login, QString password, QString position, QString dbname)
+void Person::reg(QString id, QString name, QString bday, QString bmonth, QString byear, QString phonenum, QString login, QString password, QString position, QString dbname)
 {
-    lp = login+":"+password+":"+position+":"+name+":"+bday+"/"+bmonth+"/"+byear+":"+phonenum+"\n";
+    lp = id+":"+login+":"+password+":"+position+":"+name+":"+bday+"/"+bmonth+"/"+byear+":"+phonenum+"\n";
     QFile regist("E:\\181_331_vasyutkin\\vasyutkin_term2\\Qt\\Lab_1\\commondb.txt");
     regist.open(QIODevice::Append);
     QTextStream registS(&regist);
     registS<<lp;
     regist.close();
-    lp = name+":"+bday+"/"+bmonth+"/"+byear+":"+phonenum+"\n";
+    lp = id+":"+name+":"+bday+"/"+bmonth+"/"+byear+":"+phonenum+"\n";
     QFile registall("E:\\181_331_vasyutkin\\vasyutkin_term2\\Qt\\Lab_1\\"+dbname+".txt");
     registall.open(QIODevice::Append);
     QTextStream registallS(&registall);

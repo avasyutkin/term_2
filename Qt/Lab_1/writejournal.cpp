@@ -21,18 +21,19 @@ void WriteJournal::on_pushButton_clicked()
 {
     carmodel=ui->lineEdit->text();
     name=ui->lineEdit_2->text();
-    timehour=ui->lineEdit_3->text();
-    timeminute=ui->lineEdit_4->text();
-    dateday=ui->lineEdit_5->text();
-    datemonth=ui->lineEdit_6->text();
-    dateyear=ui->lineEdit_7->text();
+    QDate date = QDate::currentDate();
+    QTime time = QTime::currentTime();
+    date.toString("dd.MM.yyyy");
+    time.toString("hh/mm");
+    QString Date = date.toString("dd.MM.yyyy");
+    QString Time = time.toString("hh/mm");
 
     Driver driver;
-    if (carmodel.size() == 0 || name.size() == 0 || timehour.size() == 0 || timeminute.size() == 0 || dateday.size() == 0|| datemonth.size() == 0 || dateyear.size() == 0)
+    if (carmodel.size() == 0 || name.size() == 0 || Time.size() == 0 || Date.size() == 0)
         QMessageBox::warning(this, "Ошибка", "Заполните все поля.");
     else
     {
-        driver.writejournal(carmodel, name, dateday, datemonth, dateyear, timehour, timeminute);
+        driver.writejournal(id, carmodel, name, Date, Time);
         QMessageBox::information(this, "Успешно", "Запись в журнал осуществлена. Счастливого пути!");
         close();
         delete this;

@@ -7,7 +7,6 @@
 #include "departurejournal.h"
 #include "changepass.h"
 #include "wiewjournaluser.h"
-#include "warning.h"
 #include <QMessageBox>
 
 namespace Ui {

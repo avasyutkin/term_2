@@ -12,19 +12,21 @@ WiewJournalUser::WiewJournalUser(QWidget *parent) :
     DataBase user;
     user.usertovector(aaa);
     ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
-    ui->tableWidget->setColumnCount(3);
-    ui->tableWidget->setHorizontalHeaderLabels(QStringList() << "Водитель" << "Дата рождения" << "Номер телефона");
+    ui->tableWidget->setColumnCount(4);
+    ui->tableWidget->setHorizontalHeaderLabels(QStringList() << "ID" << "Водитель" << "Дата рождения" << "Номер телефона");
     ui->tableWidget->setRowCount(user.getJournalUserSize());
     ui->tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     for(int i=0; i<ui->tableWidget->rowCount(); i++)
     {
-        QTableWidgetItem *a = new QTableWidgetItem(QString::fromLocal8Bit(user.getJournalUserName(i).c_str()));
-        QTableWidgetItem *b = new QTableWidgetItem(QString::fromLocal8Bit(user.getJournalUserDate(i).c_str()));
-        QTableWidgetItem *c = new QTableWidgetItem(QString::fromLocal8Bit(user.getJournalUserPhonenumber(i).c_str()));
+        QTableWidgetItem *a = new QTableWidgetItem(QString::fromLocal8Bit(user.getJournalUserID(i).c_str()));
+        QTableWidgetItem *b = new QTableWidgetItem(QString::fromLocal8Bit(user.getJournalUserName(i).c_str()));
+        QTableWidgetItem *c = new QTableWidgetItem(QString::fromLocal8Bit(user.getJournalUserDate(i).c_str()));
+        QTableWidgetItem *d = new QTableWidgetItem(QString::fromLocal8Bit(user.getJournalUserPhonenumber(i).c_str()));
 
         ui->tableWidget->setItem(i, 0, a);
         ui->tableWidget->setItem(i, 1, b);
         ui->tableWidget->setItem(i, 2, c);
+        ui->tableWidget->setItem(i, 3, d);
     };
 }
 
@@ -45,19 +47,21 @@ void WiewJournalUser::on_pushButton_clicked()
     ui->pushButton->setDisabled(0);
     ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
     ui->tableWidget->setColumnCount(3);
-    ui->tableWidget->setHorizontalHeaderLabels(QStringList() << "Водитель" << "Дата рождения" << "Номер телефона");
+    ui->tableWidget->setHorizontalHeaderLabels(QStringList() << "ID" << "Водитель" << "Дата рождения" << "Номер телефона");
     ui->tableWidget->setRowCount(user.getJouralSearchSize(_person));
     ui->tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
     if (user.getJouralSearchSize(_person) == 1)
     {
-        QTableWidgetItem *a = new QTableWidgetItem(QString::fromLocal8Bit(user.getJournalSearchName(_person).c_str()));
-        QTableWidgetItem *b = new QTableWidgetItem(QString::fromLocal8Bit(user.getJournalSearchDate(_person).c_str()));
-        QTableWidgetItem *c = new QTableWidgetItem(QString::fromLocal8Bit(user.getJournalSearchNump(_person).c_str()));
+        QTableWidgetItem *a = new QTableWidgetItem(QString::fromLocal8Bit(user.getJournalSearchID(_person).c_str()));
+        QTableWidgetItem *b = new QTableWidgetItem(QString::fromLocal8Bit(user.getJournalSearchName(_person).c_str()));
+        QTableWidgetItem *c = new QTableWidgetItem(QString::fromLocal8Bit(user.getJournalSearchDate(_person).c_str()));
+        QTableWidgetItem *d = new QTableWidgetItem(QString::fromLocal8Bit(user.getJournalSearchDate(_person).c_str()));
 
         ui->tableWidget->setItem(0, 0, a);
         ui->tableWidget->setItem(0, 1, b);
         ui->tableWidget->setItem(0, 2, c);
+        ui->tableWidget->setItem(0, 3, d);
     }
 }
 
