@@ -1,7 +1,5 @@
 #include "client.h"
-
 #include <QTcpSocket>
-
 #include <QTextEdit>
 #include <QLineEdit>
 #include <QPushButton>
@@ -9,7 +7,8 @@
 #include <QLabel>
 #include <QTime>
 
-Client::Client(QString strHost, quint16 port): _nextBlockSize(0){
+Client::Client(QString strHost, quint16 port): _nextBlockSize(0)
+{
     _tcpSocket = new QTcpSocket(this);
     _tcpSocket->connectToHost(strHost, port);
 
@@ -32,7 +31,8 @@ Client::Client(QString strHost, quint16 port): _nextBlockSize(0){
     setLayout(layout);
 }
 
-void Client::slotReadyRead(){
+void Client::slotReadyRead()
+{
     QDataStream in(_tcpSocket);
     //in.setVersion(QDataStream::Qt_5_10);
 
@@ -41,10 +41,8 @@ void Client::slotReadyRead(){
             if (_tcpSocket->bytesAvailable() <static_cast<int>(sizeof(quint16))){
                 break;
             }
-
             in >> _nextBlockSize;
         }
-
         if (_tcpSocket->bytesAvailable() < _nextBlockSize){
             break;
         }
@@ -58,7 +56,8 @@ void Client::slotReadyRead(){
     }
 }
 
-void Client::slotSendToServer(){  //что бы не передавалось, оно будет начинаться с размера блока
+void Client::slotSendToServer()
+{  //что бы не передавалось, оно будет начинаться с размера блока
     QByteArray  arrBlock;
     QDataStream out(&arrBlock, QIODevice::WriteOnly);
     //out.setVersion(QDataStream::Qt_5_10);
@@ -71,7 +70,8 @@ void Client::slotSendToServer(){  //что бы не передавалось, �
     _textInput->setText("");
 }
 
-void Client::slotConnected(){
+void Client::slotConnected()
+{
     _textInfo->append("Received the \"connected\" signal.");
 }
 

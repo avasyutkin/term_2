@@ -7,7 +7,8 @@
 class QTextEdit;
 class QLineEdit;
 
-class Client: public QWidget{
+class Client: public QWidget
+{
     Q_OBJECT
 
 private:

@@ -1,12 +1,9 @@
 #include "server.h"
-
 #include <QTcpServer>
 #include <QTcpSocket>
-
 #include <QTextEdit>
 #include <QVBoxLayout>
 #include <QLabel>
-
 #include <QDataStream>
 #include <QTime>
 
@@ -42,7 +39,8 @@ void Server::slotNewConnection()
     _clientSocket->write("Server response: connected.\n\r");
 }
 
-void Server::slotReadClient(){
+void Server::slotReadClient()
+{
     //Вариант 1
     /*while(_clientSocket->bytesAvailable()>0){
         QByteArray array = _clientSocket->readAll();
@@ -66,18 +64,14 @@ void Server::slotReadClient(){
         //in.setVersion(QDataStream::Qt_5_10);
 
         while(true){
-            if (_nextBlockSize == 0){
-                if (SClients[i]->bytesAvailable() < static_cast<int>(sizeof(quint16))){
+            if (_nextBlockSize == 0)
+            {
+                if (SClients[i]->bytesAvailable() < static_cast<int>(sizeof(quint16)))
                     break;
-                }
-
                 in >> _nextBlockSize;
             }
-
-            if (SClients[i]->bytesAvailable() < _nextBlockSize){
+            if (SClients[i]->bytesAvailable() < _nextBlockSize)
                 break;
-            }
-
 
             QTime time;
             QString str;
@@ -102,10 +96,10 @@ void Server::slotReadClient(){
             sendToClient(SClients[i], "Server response: received \"" + str + "\".");
         }
     }
-
 }
 
-void Server::sendToClient(QTcpSocket* socket, const QString &str){
+void Server::sendToClient(QTcpSocket* socket, const QString &str)
+{
     QByteArray arrBlock;
     QDataStream out(&arrBlock, QIODevice::WriteOnly);
     //out.setVersion(QDataStream::Qt_5_10);
