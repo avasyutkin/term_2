@@ -11,6 +11,7 @@
 #include <QMessageBox>
 #include <QFile>
 #include <QTextStream>
+#include <QDate>
 
 using namespace std;
 registration::registration(QWidget *parent) :
@@ -18,6 +19,15 @@ registration::registration(QWidget *parent) :
     ui(new Ui::registration)
 {
     ui->setupUi(this);
+    QDate date = QDate::currentDate();
+    date.toString("yyyy");
+    QString Date = date.toString("yyyy");
+    int ddate = Date.toInt();
+    for(int i = 1950; i < (ddate-18); i++)
+    {
+        QString j = QString::number(i);
+        ui->year->addItem(j);
+    }
 }
 
 registration::~registration()
@@ -29,12 +39,21 @@ void registration::on_pushButton_clicked()
 {
     name=ui->name->text();
     phonenum=ui->phonenum->text();
-    bday=ui->bday->text();
-    bmonth=ui->bmonth->text();
-    byear=ui->byear->text();
+    bday=ui->day->currentText();
+    bmonth=ui->month->currentText();
     login=ui->login->text();
     password=ui->password->text();
 
+    QDate date = QDate::currentDate();
+    date.toString("yyyy");
+    QString Date = date.toString("yyyy");
+    int ddate = Date.toInt();
+    for(int i = 1950; i < (ddate-18); i++)
+    {
+        QString j = QString::number(i);
+        if(ui->year->currentText() == j)
+            byear = j;
+    }
 
     if(ui->checkBox->isChecked() && ui->checkBox_2->isChecked())
     {
@@ -43,7 +62,7 @@ void registration::on_pushButton_clicked()
 
     else if(ui->checkBox->isChecked())
     {
-        if(name.size()!=0 && login.size()!=0 && password.size()!=0 && bday.size()!=0 && bmonth.size()!=0 && byear.size()!=0 && phonenum.size()!=0)
+        if(name.size()!=0 && login.size()!=0 && password.size()!=0 && phonenum.size()!=0)
         {
             string a;
             int idd = 0;
@@ -54,12 +73,20 @@ void registration::on_pushButton_clicked()
             idd = idd+1;
             QString id = QString::number(idd);
             Admin _admin;
-            _admin.reg(id, name, bday, bmonth, byear, phonenum, login, password, "21232f297a57a5a743894a0e4a801fc3", "admin");
-            Admin usera(string commondb);
-            hide();
-            QMessageBox::information(this, "Успешно", "Вы зарегистрировались в системе, теперь войдите в свой аккаунт.");
-            autorization = new MainWindow(this);
-            autorization -> show();
+            DataBase userr;
+            QString ab = login+":"+password;
+            string _ab = ab.toLocal8Bit().constData();
+            if(!userr.registsamelp(_ab))
+            {
+                _admin.reg(id, name, bday, bmonth, byear, phonenum, login, password, "21232f297a57a5a743894a0e4a801fc3", "admin");
+                Admin usera(string commondb);
+                hide();
+                QMessageBox::information(this, "Успешно", "Вы зарегистрировались в системе, теперь войдите в свой аккаунт.");
+                autorization = new MainWindow(this);
+                autorization -> show();
+            }
+            else
+                QMessageBox::warning(this, "Ошибка", "Пользователь с таким логином и паролем уже зарегистрирован в системе.");
 
         }
         else
@@ -82,12 +109,20 @@ void registration::on_pushButton_clicked()
             idd = idd+1;
             QString id = QString::number(idd);
             Driver _driver;
-            _driver.reg(id, name, bday, bmonth, byear, phonenum, login, password, "e2d45d57c7e2941b65c6ccd64af4223e", "driver");
-            Driver userd(string driver);
-            hide();
-            QMessageBox::information(this, "Успешно", "Вы зарегистрировались в системе, теперь войдите в свой аккаунт.");
-            autorization = new MainWindow(this);
-            autorization -> show();
+            DataBase userr;
+            QString ab = login+":"+password;
+            string _ab = ab.toLocal8Bit().constData();
+            if(!userr.registsamelp(_ab))
+            {
+                _driver.reg(id, name, bday, bmonth, byear, phonenum, login, password, "e2d45d57c7e2941b65c6ccd64af4223e", "driver");
+                Driver userd(string driver);
+                hide();
+                QMessageBox::information(this, "Успешно", "Вы зарегистрировались в системе, теперь войдите в свой аккаунт.");
+                autorization = new MainWindow(this);
+                autorization -> show();
+            }
+            else
+                QMessageBox::warning(this, "Ошибка", "Пользователь с таким логином и паролем уже зарегистрирован в системе.");
         }
         else
         {

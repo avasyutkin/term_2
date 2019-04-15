@@ -34,3 +34,9 @@ void WindowDriver::on_pushButton_2_clicked()
     windoww=new ChangePass(this);
     windoww->show();
 }
+
+void WindowDriver::on_pushButton_4_clicked()
+{
+    mydepart = new MyDepartures(this);
+    mydepart->show();
+}

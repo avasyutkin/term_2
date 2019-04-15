@@ -8,6 +8,7 @@
 #include "changepass.h"
 #include "wiewjournaluser.h"
 #include <QMessageBox>
+#include "newauto.h"
 
 namespace Ui {
 class WindowAdmin;
@@ -28,12 +29,16 @@ private slots:
     void on_pushButton_4_clicked();
     void on_pushButton_3_clicked();
 
+    void on_pushButton_6_clicked();
+
 private:
     Ui::WindowAdmin *ui;
     DepartureJournal *journol;
     WiewJournalUser *jaurnol;
     ChangePass *windoww;
     vector <ffile> *user;
+    NewAuto *newcar;
+    Verification *verific;
 };
 
 #endif // WINDOWADMIN_H

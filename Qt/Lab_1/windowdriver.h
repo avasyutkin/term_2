@@ -6,6 +6,7 @@
 #include <string>
 #include "writejournal.h"
 #include "changepass.h"
+#include "mydepartures.h"
 
 namespace Ui {
 class WindowDriver;
@@ -24,10 +25,13 @@ private slots:
     void on_pushButton_3_clicked();
     void on_pushButton_2_clicked();
 
+    void on_pushButton_4_clicked();
+
 private:
     Ui::WindowDriver *ui;
     WriteJournal *driver;
     ChangePass *windoww;
+    MyDepartures *mydepart;
 };
 
 #endif // WINDOWDRIVER_H

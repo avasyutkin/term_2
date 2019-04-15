@@ -37,7 +37,10 @@ SOURCES += \
     departurejournal.cpp \
     writejournal.cpp \
     wiewjournaluser.cpp \
-    changepass.cpp
+    changepass.cpp \
+    newauto.cpp \
+    verification.cpp \
+    mydepartures.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -51,7 +54,10 @@ HEADERS += \
     departurejournal.h \
     writejournal.h \
     wiewjournaluser.h \
-    changepass.h
+    changepass.h \
+    newauto.h \
+    verification.h \
+    mydepartures.h
 
 FORMS += \
         mainwindow.ui \
@@ -61,7 +67,10 @@ FORMS += \
     departurejournal.ui \
     writejournal.ui \
     wiewjournaluser.ui \
-    changepass.ui
+    changepass.ui \
+    newauto.ui \
+    verification.ui \
+    mydepartures.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

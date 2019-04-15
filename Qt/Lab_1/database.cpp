@@ -61,6 +61,48 @@ void DataBase::vectortouser(string _tablename){
     }
 }
 
+void DataBase::cartovector(string _tableName)
+{
+    ifstream file;
+    string dbname=_tableName;
+    file.open("E:\\181_331_vasyutkin\\vasyutkin_term2\\Qt\\Lab_1\\"+dbname+".txt", ios::app);
+    while(!file.eof())
+    {
+        string str, token;
+        getline(file, str);
+        car item;
+
+        int k = 0;
+        istringstream fileS(str);
+
+        while(getline(fileS, token, ':'))
+        {
+            if(k == 0) item.autocar = token;
+            if(k == 1) item.carnum = token;
+
+            k++;
+        }
+        if(!item.autocar[0] || !item.carnum[0])
+            break;
+        else
+            carvector.push_back(item);
+    }
+    file.close();
+}
+
+void DataBase::vectortocar(string _tableName)
+{
+    QString dbname = QString::fromLocal8Bit(_tableName.c_str());
+    QFile User("E:\\181_331_vasyutkin\\vasyutkin_term2\\Qt\\Lab_1\\"+dbname+".txt");
+    if (User.open(QIODevice::WriteOnly))
+    {
+        QTextStream UserS(&User);
+        for (unsigned i = 0; i < carvector.size(); i++)
+            UserS <<QString::fromLocal8Bit(carvector.at(i).autocar.c_str()) << ":" << QString::fromLocal8Bit(carvector.at(i).carnum.c_str()) << "\r\n";
+        User.close();
+    }
+}
+
 void DataBase::journaltovector()
 {
     ifstream file;
@@ -149,6 +191,41 @@ string DataBase::getJournalSearchID(string v)
         if(user.at(i).name == v)
             return user.at(i).id;
 }
+
+string DataBase::getSearchCarByID(string i, int a)
+{
+    int _i = -1;
+    for (unsigned ii = 0; ii < journaal.size(); ii++)
+    {
+        if(journaal.at(ii).driver == i)
+            _i++;
+        if (a == _i)
+            return journaal.at(ii).carmodel;
+    }
+}
+
+string DataBase::getSearchCarDateByID(string i, int a)
+{
+    int _i = -1;
+    for (unsigned ii = 0; ii < journaal.size(); ii++){
+        if(journaal.at(ii).driver == i)
+            _i++;
+        if (a == _i)
+            return journaal.at(ii).date;
+    }
+}
+
+    string DataBase::getSearchCarTimeByID(string i, int a)
+    {
+        int _i = -1;
+        for (unsigned ii = 0; ii < journaal.size(); ii++){
+            if(journaal.at(ii).driver == i)
+                _i++;
+            if (a == _i)
+                return journaal.at(ii).date;
+        }
+    }
+
 string DataBase::getDJournalSearchDate(string v, int a)
 {
     int _i = -1;
@@ -191,6 +268,51 @@ string DataBase::getDJournalSearchTime(string v, int a)
         if (a == _i)
             return journaal.at(i).time;
     }
+}
+
+string DataBase::getCarModel(int i)
+{
+    return carvector.at(i).autocar;
+}
+
+string DataBase::getCarNum(int i)
+{
+    return carvector.at(i).carnum;
+}
+
+int DataBase::getCarSize()
+{
+    return carvector.size();
+}
+
+int DataBase::getMyJournalCarSize(string id)
+{
+    int a = 0;
+    for (unsigned i = 0; i<journaal.size(); i++)
+    {
+        if (journaal.at(i).driver == user.at(i).name+"("+id+")")
+            a++;
+    }
+    return a;
+}
+
+void DataBase::addNewCar(string newcar)
+{
+    string a;
+    int idd = 0;
+    ifstream commondb;
+    commondb.open("E:\\181_331_vasyutkin\\vasyutkin_term2\\Qt\\Lab_1\\car.txt");
+    while (getline(commondb, a,'\n'))
+        idd++;
+    idd = idd+1;
+    QString id = QString::number(idd);
+    QString _newcar = QString::fromLocal8Bit(newcar.c_str());
+    QString lp = _newcar+":"+id+"\n";
+    QFile regist("E:\\181_331_vasyutkin\\vasyutkin_term2\\Qt\\Lab_1\\car.txt");
+    regist.open(QIODevice::Append);
+    QTextStream registS(&regist);
+    registS<<lp;
+    regist.close();
 }
 
 int DataBase::getDJouralSearchSize(string v)
@@ -298,7 +420,8 @@ string DataBase::getpass(string a)
 
 void DataBase::changepass(string a, string newpasss)
 {
-    for(unsigned i=0; i<user.size(); i++){
+    for(unsigned i=0; i<user.size(); i++)
+    {
         if (a == "login" && rlongpass()==(user.at(i).login+":"+user.at(i).password))
             user.at(i).login=newpasss;
         if (a == "password" && rlongpass()==(user.at(i).login+":"+user.at(i).password))
@@ -306,3 +429,43 @@ void DataBase::changepass(string a, string newpasss)
     }
 }
 
+bool DataBase::registsamelp(string lp)
+{
+    for(unsigned i=0; i<user.size(); i++)
+    {
+        if (lp==(user.at(i).login+":"+user.at(i).password))
+            return 1;
+        else
+            return 0;
+    }
+}
+
+bool DataBase::Confirm(string password)
+{
+    DataBase pass;
+    pass.usertovector("commondb");
+    if (pass.getpass("password")==password)
+        return 1;
+    else
+        return 0;
+}
+bool DataBase::vrfc;
+
+bool DataBase::returnvrfc()
+{
+    return vrfc;
+}
+
+void DataBase::vrfnnull()
+{
+    vrfc = 0;
+}
+
+void DataBase::changevrfc(bool v)
+{
+    vrfc = 0;
+    if(v == 0)
+        vrfc = 1;
+    else if (v == 1)
+        vrfc = 0;
+}
