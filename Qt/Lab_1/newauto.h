@@ -2,7 +2,6 @@
 #define NEWAUTO_H
 
 #include <QDialog>
-#include "verification.h"
 
 namespace Ui {
 class NewAuto;
@@ -24,7 +23,6 @@ private slots:
 private:
     Ui::NewAuto *ui;
     QString newcar;
-    Verification *verific;
 };
 
 #endif // NEWAUTO_H

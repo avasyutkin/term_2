@@ -8,6 +8,7 @@
 #include <sstream>
 #include <cstdlib>
 #include <QTextStream>
+#include <regex>
 
 using namespace std;
 
@@ -444,46 +445,13 @@ bool DataBase::registsamelp(string lp)
     }
 }
 
-bool DataBase::Confirm(string password)
-{
-    DataBase pass;
-    pass.usertovector("commondb");
-    if (pass.getpass("password")==password)
-        return 1;
-    else
-        return 0;
-}
-bool DataBase::vrfc;
-
-bool DataBase::returnvrfc()
-{
-    return vrfc;
-}
-
-void DataBase::vrfnnull()
-{
-    vrfc = 0;
-}
-
-void DataBase::changevrfc(bool v)
-{
-    vrfc = 0;
-    if(v == 0)
-        vrfc = 1;
-    else if (v == 1)
-        vrfc = 0;
-}
-
-bool DataBase::parseNameToInt(string i)
+bool DataBase::parse(string i)
 {
     for(int a = 0; a < i.length(); a++)
-    {
         while (i[a] >= '0' && i[a] <= '9')
-        {
             if (i[a] >= '0' && i[a] <= '9')
                 return 0;
-            else if (i[a] != '0' || i[a] != '1' || i[a] != '2' || i[a] != '3' || i[a] != '4' || i[a] != '5' || i[a] != '6' || i[a] != '7' || i[a] != '8' || i[a] != '9')
+            else
                 return 1;
-        }
-    }
 }
+

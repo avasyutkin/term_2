@@ -87,15 +87,12 @@ public:
     int getCarSize();
     void addNewCar(string newcar);
     bool Confirm(string password);
-    bool returnvrfc();
-    void changevrfc(bool v);
-    void vrfnnull();
     bool registsamelp(string lp);
     string getSearchCarByID(string i, string name, int a);
     string getSearchCarTimeByID(string i, string name, int a);
     string getSearchCarDateByID(string i, string name, int a);
     int getMyJournalCarSize(string id, string name);
-    bool parseNameToInt(string i);
+    bool parse(string i);
 
 private:
     string _tableName;

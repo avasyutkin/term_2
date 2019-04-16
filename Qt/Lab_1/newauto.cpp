@@ -42,19 +42,17 @@ void NewAuto::on_pushButton_clicked()
 {
     newcar = ui->lineEdit->text();
     DataBase car;
-    verific = new Verification(this);
-    verific->show();
     string _newcar = newcar.toLocal8Bit().constData();;
     if(_newcar.size()==0)
     {
         QMessageBox::warning(this, "Ошибка", "Введите марку машины.");
         return;
     }
-    if (_newcar.size()!=0)
+    else if (_newcar.size()!=0)
     {
-        if (car.returnvrfc())
-        {
-            car.addNewCar(_newcar);
-        }
+        car.addNewCar(_newcar);
+        QMessageBox::information(this, "Успешно", "Новый автомобиль добавлен.");
+        this->close();
+        delete this;
     }
 }

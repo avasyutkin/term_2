@@ -38,7 +38,6 @@ private:
     ChangePass *windoww;
     vector <ffile> *user;
     NewAuto *newcar;
-    Verification *verific;
 };
 
 #endif // WINDOWADMIN_H

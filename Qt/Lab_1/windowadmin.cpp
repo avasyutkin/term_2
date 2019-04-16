@@ -52,11 +52,6 @@ void WindowAdmin::on_pushButton_3_clicked()
                                        QMessageBox::Yes | QMessageBox::No);
     if (button == QMessageBox::Yes)
     {
-        DataBase a;
-        verific = new Verification(this);
-        verific -> show();
-        if (a.returnvrfc())
-        {
             QMessageBox::information(this, "Игра окончена", "Ваша компания скоро обанкротится.");
 
             QFile fileall("E:\\181_331_vasyutkin\\vasyutkin_term2\\Qt\\Lab_1\\commondb.txt");
@@ -70,8 +65,6 @@ void WindowAdmin::on_pushButton_3_clicked()
             QFile fileall4("E:\\181_331_vasyutkin\\vasyutkin_term2\\Qt\\Lab_1\\car.txt");
             fileall4.remove();
             this->close();
-            a.vrfnnull();
-        }
     }
     else
         QMessageBox::information(this, "Поздравляем", "Вы очень умны, Вы не дали обанкротиться Вашей компании.");

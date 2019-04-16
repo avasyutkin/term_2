@@ -49,6 +49,7 @@ void registration::on_pushButton_clicked()
     QString Date = date.toString("yyyy");
     int ddate = Date.toInt();
     string nema = name.toLocal8Bit().constData();
+    string nump = phonenum.toLocal8Bit().constData();
 
     DataBase userr;
     userr.usertovector("commondb");
@@ -78,20 +79,17 @@ void registration::on_pushButton_clicked()
             QString id = QString::number(idd);
             Admin _admin;
             if(userr.registsamelp(_ab) == 0)
-                if(phonenum.toInt())
-                    if(userr.parseNameToInt(nema))
-                    {
-                        _admin.reg(id, name, bday, bmonth, byear, phonenum, login, password, "21232f297a57a5a743894a0e4a801fc3", "admin");
-                        Admin usera(string commondb);
-                        hide();
-                        QMessageBox::information(this, "Успешно", "Вы зарегистрировались в системе, теперь войдите в свой аккаунт.");
-                        autorization = new MainWindow(this);
-                        autorization -> show();
-                    }
-                    else
-                        QMessageBox::warning(this, "Ошибка", "Введите корректное имя.");
+                if(userr.parse(nema))
+                {
+                    _admin.reg(id, name, bday, bmonth, byear, phonenum, login, password, "21232f297a57a5a743894a0e4a801fc3", "admin");
+                    Admin usera(string commondb);
+                    hide();
+                    QMessageBox::information(this, "Успешно", "Вы зарегистрировались в системе, теперь войдите в свой аккаунт.");
+                    autorization = new MainWindow(this);
+                    autorization -> show();
+                }
                 else
-                    QMessageBox::warning(this, "Ошибка", "Введите корректный номер телефона.");
+                    QMessageBox::warning(this, "Ошибка", "Введите корректное имя.");
             else if (userr.registsamelp(_ab) == 1)
                 QMessageBox::warning(this, "Ошибка", "Пользователь с таким логином и паролем уже зарегистрирован в системе.");
         }
@@ -114,7 +112,7 @@ void registration::on_pushButton_clicked()
             QString id = QString::number(idd);
             Driver _driver;
             if(userr.registsamelp(_ab) == 0)
-                if(userr.parseNameToInt(nema))
+                if(userr.parse(nema))
                 {
 
                     _driver.reg(id, name, bday, bmonth, byear, phonenum, login, password, "e2d45d57c7e2941b65c6ccd64af4223e", "driver");
@@ -126,13 +124,15 @@ void registration::on_pushButton_clicked()
                 }
                 else
                     QMessageBox::warning(this, "Ошибка", "Введите корректное имя.");
+            else if (userr.registsamelp(_ab) == 1)
+                QMessageBox::warning(this, "Ошибка", "Пользователь с таким логином и паролем уже зарегистрирован в системе.");
         }
+
         else
-            QMessageBox::warning(this, "Ошибка", "Введите корректный номер телефона.");
-    else if (userr.registsamelp(_ab) == 1)
-        QMessageBox::warning(this, "Ошибка", "Пользователь с таким логином и паролем уже зарегистрирован в системе.");
-    else
-        QMessageBox::warning(this, "Ошибка", "Заполните все поля.");
+        {
+            regist.close();
+            QMessageBox::warning(this, "Ошибка", "Заполните все поля.");
+        }
 }
 
 void registration::on_pushButton_2_clicked()

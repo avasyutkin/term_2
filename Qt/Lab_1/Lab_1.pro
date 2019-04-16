@@ -39,7 +39,6 @@ SOURCES += \
     wiewjournaluser.cpp \
     changepass.cpp \
     newauto.cpp \
-    verification.cpp \
     mydepartures.cpp
 
 HEADERS += \
@@ -56,7 +55,6 @@ HEADERS += \
     wiewjournaluser.h \
     changepass.h \
     newauto.h \
-    verification.h \
     mydepartures.h
 
 FORMS += \
@@ -69,7 +67,6 @@ FORMS += \
     wiewjournaluser.ui \
     changepass.ui \
     newauto.ui \
-    verification.ui \
     mydepartures.ui
 
 # Default rules for deployment.
