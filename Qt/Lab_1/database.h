@@ -95,6 +95,7 @@ public:
     string getSearchCarTimeByID(string i, string name, int a);
     string getSearchCarDateByID(string i, string name, int a);
     int getMyJournalCarSize(string id, string name);
+    bool parseNameToInt(string i);
 
 private:
     string _tableName;

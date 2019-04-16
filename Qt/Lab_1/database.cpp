@@ -473,3 +473,17 @@ void DataBase::changevrfc(bool v)
     else if (v == 1)
         vrfc = 0;
 }
+
+bool DataBase::parseNameToInt(string i)
+{
+    for(int a = 0; a < i.length(); a++)
+    {
+        while (i[a] >= '0' && i[a] <= '9')
+        {
+            if (i[a] >= '0' && i[a] <= '9')
+                return 0;
+            else if (i[a] != '0' || i[a] != '1' || i[a] != '2' || i[a] != '3' || i[a] != '4' || i[a] != '5' || i[a] != '6' || i[a] != '7' || i[a] != '8' || i[a] != '9')
+                return 1;
+        }
+    }
+}
