@@ -27,7 +27,7 @@ registration::registration(QWidget *parent) :
     {
         QString j = QString::number(i);
         ui->year->addItem(j);
-    }
+    }   
 }
 
 registration::~registration()
@@ -81,12 +81,17 @@ void registration::on_pushButton_clicked()
             Admin _admin;
             if(userr.registsamelp(_ab) == 0)
             {
-                _admin.reg(id, name, bday, bmonth, byear, phonenum, login, password, "21232f297a57a5a743894a0e4a801fc3", "admin");
-                Admin usera(string commondb);
-                hide();
-                QMessageBox::information(this, "Успешно", "Вы зарегистрировались в системе, теперь войдите в свой аккаунт.");
-                autorization = new MainWindow(this);
-                autorization -> show();
+                if(phonenum.toInt())
+                {
+                    _admin.reg(id, name, bday, bmonth, byear, phonenum, login, password, "21232f297a57a5a743894a0e4a801fc3", "admin");
+                    Admin usera(string commondb);
+                    hide();
+                    QMessageBox::information(this, "Успешно", "Вы зарегистрировались в системе, теперь войдите в свой аккаунт.");
+                    autorization = new MainWindow(this);
+                    autorization -> show();
+                }
+                else
+                    QMessageBox::warning(this, "Ошибка", "Введите корректный номер телефона.");
             }
             else if (userr.registsamelp(_ab) == 1)
                 QMessageBox::warning(this, "Ошибка", "Пользователь с таким логином и паролем уже зарегистрирован в системе.");
@@ -114,12 +119,17 @@ void registration::on_pushButton_clicked()
             Driver _driver;
             if(userr.registsamelp(_ab) == 0)
             {
-                _driver.reg(id, name, bday, bmonth, byear, phonenum, login, password, "e2d45d57c7e2941b65c6ccd64af4223e", "driver");
-                Driver userd(string driver);
-                hide();
-                QMessageBox::information(this, "Успешно", "Вы зарегистрировались в системе, теперь войдите в свой аккаунт.");
-                autorization = new MainWindow(this);
-                autorization -> show();
+                if(phonenum.toInt())
+                {
+                    _driver.reg(id, name, bday, bmonth, byear, phonenum, login, password, "e2d45d57c7e2941b65c6ccd64af4223e", "driver");
+                    Driver userd(string driver);
+                    hide();
+                    QMessageBox::information(this, "Успешно", "Вы зарегистрировались в системе, теперь войдите в свой аккаунт.");
+                    autorization = new MainWindow(this);
+                    autorization -> show();
+                }
+                else
+                    QMessageBox::warning(this, "Ошибка", "Введите корректный номер телефона.");
             }
             else if (userr.registsamelp(_ab) == 1)
                 QMessageBox::warning(this, "Ошибка", "Пользователь с таким логином и паролем уже зарегистрирован в системе.");

@@ -13,7 +13,7 @@
   <property name="windowTitle">
    <string>Подтверждение действия</string>
   </property>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>20</x>
@@ -39,6 +39,9 @@
        <widget class="QLineEdit" name="lineEdit">
         <property name="echoMode">
          <enum>QLineEdit::Password</enum>
+        </property>
+        <property name="placeholderText">
+         <string>Введите пароль</string>
         </property>
        </widget>
       </item>

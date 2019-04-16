@@ -26,13 +26,10 @@
     <item row="0" column="0" colspan="6">
      <widget class="QTableWidget" name="tableWidget"/>
     </item>
-    <item row="1" column="4">
-     <widget class="QLineEdit" name="lineEdit">
-      <property name="inputMask">
-       <string/>
-      </property>
+    <item row="1" column="0">
+     <widget class="QPushButton" name="pushButton_2">
       <property name="text">
-       <string/>
+       <string>Назад</string>
       </property>
      </widget>
     </item>
@@ -43,17 +40,26 @@
       </property>
      </widget>
     </item>
+    <item row="1" column="2">
+     <spacer name="horizontalSpacer_2">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <property name="sizeType">
+       <enum>QSizePolicy::Maximum</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>40</width>
+        <height>20</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
     <item row="1" column="5">
      <widget class="QPushButton" name="pushButton">
       <property name="text">
        <string>Добавить</string>
-      </property>
-     </widget>
-    </item>
-    <item row="1" column="0">
-     <widget class="QPushButton" name="pushButton_2">
-      <property name="text">
-       <string>Назад</string>
       </property>
      </widget>
     </item>
@@ -73,21 +79,18 @@
       </property>
      </spacer>
     </item>
-    <item row="1" column="2">
-     <spacer name="horizontalSpacer_2">
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
+    <item row="1" column="4">
+     <widget class="QLineEdit" name="lineEdit">
+      <property name="inputMask">
+       <string/>
       </property>
-      <property name="sizeType">
-       <enum>QSizePolicy::Maximum</enum>
+      <property name="text">
+       <string/>
       </property>
-      <property name="sizeHint" stdset="0">
-       <size>
-        <width>40</width>
-        <height>20</height>
-       </size>
+      <property name="placeholderText">
+       <string>Введите марку и модель автомобиля</string>
       </property>
-     </spacer>
+     </widget>
     </item>
    </layout>
   </widget>

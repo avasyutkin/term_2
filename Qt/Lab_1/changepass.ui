@@ -50,6 +50,9 @@
         <property name="text">
          <string/>
         </property>
+        <property name="placeholderText">
+         <string>Введите старый пароль</string>
+        </property>
        </widget>
       </item>
      </layout>
@@ -64,7 +67,14 @@
        </widget>
       </item>
       <item>
-       <widget class="QLineEdit" name="newpass"/>
+       <widget class="QLineEdit" name="newpass">
+        <property name="text">
+         <string/>
+        </property>
+        <property name="placeholderText">
+         <string>Введите новый пароль</string>
+        </property>
+       </widget>
       </item>
      </layout>
     </item>
@@ -78,7 +88,14 @@
        </widget>
       </item>
       <item>
-       <widget class="QLineEdit" name="newpass3"/>
+       <widget class="QLineEdit" name="newpass3">
+        <property name="text">
+         <string/>
+        </property>
+        <property name="placeholderText">
+         <string>Повторите новый пароль</string>
+        </property>
+       </widget>
       </item>
      </layout>
     </item>
@@ -130,7 +147,14 @@
        </widget>
       </item>
       <item>
-       <widget class="QLineEdit" name="pass"/>
+       <widget class="QLineEdit" name="pass">
+        <property name="text">
+         <string/>
+        </property>
+        <property name="placeholderText">
+         <string>Введите пароль</string>
+        </property>
+       </widget>
       </item>
      </layout>
     </item>
@@ -148,6 +172,9 @@
         <property name="text">
          <string/>
         </property>
+        <property name="placeholderText">
+         <string>Введите старый логин</string>
+        </property>
        </widget>
       </item>
      </layout>
@@ -162,7 +189,11 @@
        </widget>
       </item>
       <item>
-       <widget class="QLineEdit" name="newlog"/>
+       <widget class="QLineEdit" name="newlog">
+        <property name="placeholderText">
+         <string>Введите новый логин</string>
+        </property>
+       </widget>
       </item>
      </layout>
     </item>

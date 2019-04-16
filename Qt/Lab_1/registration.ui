@@ -346,7 +346,26 @@
          </widget>
         </item>
         <item>
-         <widget class="QLineEdit" name="phonenum"/>
+         <widget class="QLineEdit" name="phonenum">
+          <property name="autoFillBackground">
+           <bool>false</bool>
+          </property>
+          <property name="inputMask">
+           <string/>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+          <property name="maxLength">
+           <number>11</number>
+          </property>
+          <property name="frame">
+           <bool>true</bool>
+          </property>
+          <property name="dragEnabled">
+           <bool>false</bool>
+          </property>
+         </widget>
         </item>
        </layout>
       </item>
