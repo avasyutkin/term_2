@@ -46,7 +46,7 @@ void WiewJournalUser::on_pushButton_clicked()
     user.usertovector(aaa);
     ui->pushButton->setDisabled(0);
     ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
-    ui->tableWidget->setColumnCount(3);
+    ui->tableWidget->setColumnCount(4);
     ui->tableWidget->setHorizontalHeaderLabels(QStringList() << "ID" << "Водитель" << "Дата рождения" << "Номер телефона");
     ui->tableWidget->setRowCount(user.getJouralSearchSize(_person));
     ui->tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
@@ -56,7 +56,7 @@ void WiewJournalUser::on_pushButton_clicked()
         QTableWidgetItem *a = new QTableWidgetItem(QString::fromLocal8Bit(user.getJournalSearchID(_person).c_str()));
         QTableWidgetItem *b = new QTableWidgetItem(QString::fromLocal8Bit(user.getJournalSearchName(_person).c_str()));
         QTableWidgetItem *c = new QTableWidgetItem(QString::fromLocal8Bit(user.getJournalSearchDate(_person).c_str()));
-        QTableWidgetItem *d = new QTableWidgetItem(QString::fromLocal8Bit(user.getJournalSearchDate(_person).c_str()));
+        QTableWidgetItem *d = new QTableWidgetItem(QString::fromLocal8Bit(user.getJournalSearchNump(_person).c_str()));
 
         ui->tableWidget->setItem(0, 0, a);
         ui->tableWidget->setItem(0, 1, b);

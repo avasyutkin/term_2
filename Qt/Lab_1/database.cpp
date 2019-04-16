@@ -215,16 +215,16 @@ string DataBase::getSearchCarDateByID(string i, string name, int a)
     }
 }
 
-    string DataBase::getSearchCarTimeByID(string i, string name, int a)
-    {
-        int _i = -1;
-        for (unsigned ii = 0; ii < journaal.size(); ii++){
-            if(journaal.at(ii).driver == name+"("+i+")")
-                _i++;
-            if (a == _i)
-                return journaal.at(ii).date;
-        }
+string DataBase::getSearchCarTimeByID(string i, string name, int a)
+{
+    int _i = -1;
+    for (unsigned ii = 0; ii < journaal.size(); ii++){
+        if(journaal.at(ii).driver == name+"("+i+")")
+            _i++;
+        if (a == _i)
+            return journaal.at(ii).date;
     }
+}
 
 string DataBase::getDJournalSearchDate(string v, int a)
 {
@@ -432,12 +432,15 @@ void DataBase::changepass(string a, string newpasss)
 
 bool DataBase::registsamelp(string lp)
 {
-    for(unsigned i=0; i<user.size(); i++)
+    for(unsigned i=0; i < user.size(); i++)
     {
-        if (lp==(user.at(i).login+":"+user.at(i).password))
-            return 1;
-        else
-            return 0;
+        while (lp==(user.at(i).login+":"+user.at(i).password))
+        {
+            if (lp==(user.at(i).login+":"+user.at(i).password))
+                return 1;
+            else
+                return 0;
+        }
     }
 }
 

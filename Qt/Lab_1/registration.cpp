@@ -48,6 +48,12 @@ void registration::on_pushButton_clicked()
     date.toString("yyyy");
     QString Date = date.toString("yyyy");
     int ddate = Date.toInt();
+
+    DataBase userr;
+    userr.usertovector("commondb");
+    QString ab = login+":"+password;
+    string _ab = ab.toLocal8Bit().constData();
+
     for(int i = 1950; i < (ddate-18); i++)
     {
         QString j = QString::number(i);
@@ -73,10 +79,7 @@ void registration::on_pushButton_clicked()
             idd = idd+1;
             QString id = QString::number(idd);
             Admin _admin;
-            DataBase userr;
-            QString ab = login+":"+password;
-            string _ab = ab.toLocal8Bit().constData();
-            if(!userr.registsamelp(_ab))
+            if(userr.registsamelp(_ab) == 0)
             {
                 _admin.reg(id, name, bday, bmonth, byear, phonenum, login, password, "21232f297a57a5a743894a0e4a801fc3", "admin");
                 Admin usera(string commondb);
@@ -85,7 +88,7 @@ void registration::on_pushButton_clicked()
                 autorization = new MainWindow(this);
                 autorization -> show();
             }
-            else
+            else if (userr.registsamelp(_ab) == 1)
                 QMessageBox::warning(this, "Ошибка", "Пользователь с таким логином и паролем уже зарегистрирован в системе.");
 
         }
@@ -109,10 +112,7 @@ void registration::on_pushButton_clicked()
             idd = idd+1;
             QString id = QString::number(idd);
             Driver _driver;
-            DataBase userr;
-            QString ab = login+":"+password;
-            string _ab = ab.toLocal8Bit().constData();
-            if(!userr.registsamelp(_ab))
+            if(userr.registsamelp(_ab) == 0)
             {
                 _driver.reg(id, name, bday, bmonth, byear, phonenum, login, password, "e2d45d57c7e2941b65c6ccd64af4223e", "driver");
                 Driver userd(string driver);
@@ -121,7 +121,7 @@ void registration::on_pushButton_clicked()
                 autorization = new MainWindow(this);
                 autorization -> show();
             }
-            else
+            else if (userr.registsamelp(_ab) == 1)
                 QMessageBox::warning(this, "Ошибка", "Пользователь с таким логином и паролем уже зарегистрирован в системе.");
         }
         else

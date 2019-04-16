@@ -59,8 +59,17 @@
           </item>
           <item>
            <widget class="QLineEdit" name="lineEdit">
+            <property name="inputMask">
+             <string notr="true"/>
+            </property>
             <property name="text">
-             <string/>
+             <string notr="true"/>
+            </property>
+            <property name="frame">
+             <bool>true</bool>
+            </property>
+            <property name="dragEnabled">
+             <bool>true</bool>
             </property>
            </widget>
           </item>
