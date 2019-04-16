@@ -192,34 +192,34 @@ string DataBase::getJournalSearchID(string v)
             return user.at(i).id;
 }
 
-string DataBase::getSearchCarByID(string i, int a)
+string DataBase::getSearchCarByID(string i, string name, int a)
 {
     int _i = -1;
     for (unsigned ii = 0; ii < journaal.size(); ii++)
     {
-        if(journaal.at(ii).driver == i)
+        if(journaal.at(ii).driver == name+"("+i+")")
             _i++;
         if (a == _i)
             return journaal.at(ii).carmodel;
     }
 }
 
-string DataBase::getSearchCarDateByID(string i, int a)
+string DataBase::getSearchCarDateByID(string i, string name, int a)
 {
     int _i = -1;
     for (unsigned ii = 0; ii < journaal.size(); ii++){
-        if(journaal.at(ii).driver == i)
+        if(journaal.at(ii).driver == name+"("+i+")")
             _i++;
         if (a == _i)
             return journaal.at(ii).date;
     }
 }
 
-    string DataBase::getSearchCarTimeByID(string i, int a)
+    string DataBase::getSearchCarTimeByID(string i, string name, int a)
     {
         int _i = -1;
         for (unsigned ii = 0; ii < journaal.size(); ii++){
-            if(journaal.at(ii).driver == i)
+            if(journaal.at(ii).driver == name+"("+i+")")
                 _i++;
             if (a == _i)
                 return journaal.at(ii).date;
@@ -285,12 +285,13 @@ int DataBase::getCarSize()
     return carvector.size();
 }
 
-int DataBase::getMyJournalCarSize(string id)
+int DataBase::getMyJournalCarSize(string id, string name)
 {
+    DataBase b;
     int a = 0;
     for (unsigned i = 0; i<journaal.size(); i++)
     {
-        if (journaal.at(i).driver == user.at(i).name+"("+id+")")
+        if (journaal.at(i).driver == name +"("+id+")")
             a++;
     }
     return a;

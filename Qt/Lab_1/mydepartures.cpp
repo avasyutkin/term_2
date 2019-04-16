@@ -16,18 +16,18 @@ MyDepartures::MyDepartures(QWidget *parent) :
     ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
     ui->tableWidget->setColumnCount(3);
     ui->tableWidget->setHorizontalHeaderLabels(QStringList() << "Автомобиль" << "Дата" << "Время");
-    ui->tableWidget->setRowCount(journal.getMyJournalCarSize(lourn.returnID()));
+    ui->tableWidget->setRowCount(journal.getMyJournalCarSize(lourn.returnID(), lourn.SearchNameByID()));
     ui->tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
-   // for(int i=0; i<ui->tableWidget->rowCount(); i++)
-//    {
-//        QTableWidgetItem *a = new QTableWidgetItem(QString::fromLocal8Bit(journal.getSearchCarByID(lourn.returnID(), i).c_str()));
-//        QTableWidgetItem *b = new QTableWidgetItem(QString::fromLocal8Bit(journal.getSearchCarDateByID(lourn.returnID(), i).c_str()));
-//        QTableWidgetItem *c = new QTableWidgetItem(QString::fromLocal8Bit(journal.getSearchCarTimeByID(lourn.returnID(), i).c_str()));
+    for(int i=0; i<ui->tableWidget->rowCount(); i++)
+   {
+        QTableWidgetItem *a = new QTableWidgetItem(QString::fromLocal8Bit(journal.getSearchCarByID(lourn.returnID(), lourn.SearchNameByID(), i).c_str()));
+        QTableWidgetItem *b = new QTableWidgetItem(QString::fromLocal8Bit(journal.getSearchCarDateByID(lourn.returnID(), lourn.SearchNameByID(), i).c_str()));
+        QTableWidgetItem *c = new QTableWidgetItem(QString::fromLocal8Bit(journal.getSearchCarTimeByID(lourn.returnID(), lourn.SearchNameByID(), i).c_str()));
 
-//        ui->tableWidget->setItem(i, 0, a);
-//        ui->tableWidget->setItem(i, 2, b);
-//        ui->tableWidget->setItem(i, 3, c);
-    //}
+        ui->tableWidget->setItem(i, 0, a);
+        ui->tableWidget->setItem(i, 1, b);
+        ui->tableWidget->setItem(i, 2, c);
+    }
 }
 
 MyDepartures::~MyDepartures()

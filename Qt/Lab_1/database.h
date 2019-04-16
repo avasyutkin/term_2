@@ -81,7 +81,6 @@ public:
     int getDJouralSearchSize(string v);
     string returnID();
     string SearchNameByID();
-    string getSearchCarByID(string i, int a);
     void changeID(string _ID);
     string getCarModel(int i);
     string getCarNum(int i);
@@ -92,9 +91,10 @@ public:
     void changevrfc(bool v);
     void vrfnnull();
     bool registsamelp(string lp);
-    string getSearchCarTimeByID(string i, int a);
-    string getSearchCarDateByID(string i, int a);
-    int getMyJournalCarSize(string id);
+    string getSearchCarByID(string i, string name, int a);
+    string getSearchCarTimeByID(string i, string name, int a);
+    string getSearchCarDateByID(string i, string name, int a);
+    int getMyJournalCarSize(string id, string name);
 
 private:
     string _tableName;
