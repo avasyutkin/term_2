@@ -3,11 +3,13 @@
 
 #include <QWidget>
 #include <QTcpSocket>
+#include <string>
 
 class QTcpServer;
 class QTcpSocket;
 class QTextEdit;
 
+using namespace std;
 
 class Server: public QWidget{
     Q_OBJECT
@@ -30,6 +32,8 @@ public:
 public slots:
     virtual void slotNewConnection();
     void slotReadClient();
+    void TicTokToe(string ttt);
+    char tiktoktoe[3][3] = '-', '-', '-', '-', '-', '-', '-',;
 };
 
 #endif // SEVER_H

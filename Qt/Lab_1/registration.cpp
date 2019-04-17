@@ -12,6 +12,8 @@
 #include <QFile>
 #include <QTextStream>
 #include <QDate>
+#include <sstream>
+#include <cstdlib>
 
 using namespace std;
 registration::registration(QWidget *parent) :
@@ -50,6 +52,8 @@ void registration::on_pushButton_clicked()
     int ddate = Date.toInt();
     string nema = name.toLocal8Bit().constData();
     string nump = phonenum.toLocal8Bit().constData();
+        bool x;
+        phonenum.toInt(&x, 10);
 
     DataBase userr;
     userr.usertovector("commondb");
@@ -81,12 +85,17 @@ void registration::on_pushButton_clicked()
             if(userr.registsamelp(_ab) == 0)
                 if(userr.parse(nema))
                 {
+                    if(x == true)
+                    {
                     _admin.reg(id, name, bday, bmonth, byear, phonenum, login, password, "21232f297a57a5a743894a0e4a801fc3", "admin");
                     Admin usera(string commondb);
                     hide();
                     QMessageBox::information(this, "Успешно", "Вы зарегистрировались в системе, теперь войдите в свой аккаунт.");
                     autorization = new MainWindow(this);
                     autorization -> show();
+                    }
+                    else
+                        QMessageBox::warning(this, "Ошибка", "Введите корректный номер телефона.");
                 }
                 else
                     QMessageBox::warning(this, "Ошибка", "Введите корректное имя.");
@@ -114,13 +123,17 @@ void registration::on_pushButton_clicked()
             if(userr.registsamelp(_ab) == 0)
                 if(userr.parse(nema))
                 {
-
+                    if(x == true)
+                    {
                     _driver.reg(id, name, bday, bmonth, byear, phonenum, login, password, "e2d45d57c7e2941b65c6ccd64af4223e", "driver");
                     Driver userd(string driver);
                     hide();
                     QMessageBox::information(this, "Успешно", "Вы зарегистрировались в системе, теперь войдите в свой аккаунт.");
                     autorization = new MainWindow(this);
                     autorization -> show();
+                    }
+                    else
+                        QMessageBox::warning(this, "Ошибка", "Введите корректный номер телефона.");
                 }
                 else
                     QMessageBox::warning(this, "Ошибка", "Введите корректное имя.");

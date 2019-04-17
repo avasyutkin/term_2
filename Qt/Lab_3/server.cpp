@@ -6,6 +6,8 @@
 #include <QLabel>
 #include <QDataStream>
 #include <QTime>
+#include <sstream>
+#include <cstdlib>
 
 Server::Server(quint16 port): _nextBlockSize(0){
     _tcpServer = new QTcpServer(this);
@@ -109,5 +111,17 @@ void Server::sendToClient(QTcpSocket* socket, const QString &str)
     out << quint16(arrBlock.size() - static_cast<int>(sizeof(quint16)));
 
     socket->write(arrBlock);
+}
+
+void Server::TicTokToe(string ttt)
+{
+//    string token;
+//    int k = 0;
+//    istringstream str(ttt);
+//    while (getline(str, token, ' '))
+//    {
+//        if (k == 0)
+//    }
+
 }
 

@@ -8,7 +8,6 @@
 #include <sstream>
 #include <cstdlib>
 #include <QTextStream>
-#include <regex>
 
 using namespace std;
 
