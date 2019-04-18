@@ -3,6 +3,7 @@
 #include "database.h"
 #include <QString>
 #include <QMessageBox>
+#include <QTextStream>
 
 WiewJournalUser::WiewJournalUser(QWidget *parent) :
     QDialog(parent),
@@ -114,4 +115,34 @@ void WiewJournalUser::on_pushButton_2_clicked()
 {
     this->close();
     delete this;
+}
+
+void WiewJournalUser::on_pushButton_3_clicked()
+{
+    string id;
+    string name;
+    string date;
+    string phonenum;
+    QString a;
+    QFile exp("E:\\181_331_vasyutkin\\vasyutkin_term2\\Qt\\Lab_1\\exportUserJournal.txt");
+    exp.open(QIODevice::Append | QIODevice::Truncate);
+    QTextStream registS(&exp);
+
+    for (int i = 0; i < ui->tableWidget->rowCount(); i++)
+    {
+        id = ui->tableWidget->item(i, 0)->text().toLocal8Bit().constData();
+        name = ui->tableWidget->item(i, 1)->text().toLocal8Bit().constData();
+        date = ui->tableWidget->item(i, 2)->text().toLocal8Bit().constData();
+        phonenum = ui->tableWidget->item(i, 3)->text().toLocal8Bit().constData();
+
+        QString _id = QString::fromLocal8Bit(id.c_str());
+        QString _name = QString::fromLocal8Bit(name.c_str());
+        QString _date = QString::fromLocal8Bit(date.c_str());
+        QString _phonenum = QString::fromLocal8Bit(phonenum.c_str());
+
+        a = _id+":"+_name+":"+_date+":"+_phonenum+"\n";
+        registS << a;
+    }
+    exp.close();
+    QMessageBox::information(this, "Успешно", "Данные экспортированы в файл exportUserJournal.txt.");
 }
