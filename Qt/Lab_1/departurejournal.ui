@@ -57,29 +57,10 @@
             </property>
            </widget>
           </item>
-          <item>
-           <widget class="QLineEdit" name="lineEdit">
-            <property name="inputMask">
-             <string notr="true"/>
-            </property>
-            <property name="text">
-             <string notr="true"/>
-            </property>
-            <property name="maxLength">
-             <number>10</number>
-            </property>
-            <property name="frame">
-             <bool>true</bool>
-            </property>
-            <property name="dragEnabled">
-             <bool>true</bool>
-            </property>
-            <property name="placeholderText">
-             <string>дд.мм.гггг</string>
-            </property>
-           </widget>
-          </item>
          </layout>
+        </item>
+        <item>
+         <widget class="QDateEdit" name="dateEdit"/>
         </item>
        </layout>
       </item>

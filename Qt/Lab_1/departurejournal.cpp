@@ -50,7 +50,7 @@ void DepartureJournal::on_pushButton_2_clicked()
 void DepartureJournal::on_pushButton_3_clicked()
 {
     ui->tableWidget->clear();
-    dt = ui->lineEdit->text();
+    dt = ui->dateEdit->text();
     DataBase journal;
     journal.journaltovector();
     string _dt=dt.toLocal8Bit().constData();

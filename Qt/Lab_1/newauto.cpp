@@ -48,6 +48,7 @@ void NewAuto::on_pushButton_clicked()
     if(_newcar.size()==0)
     {
         QMessageBox::warning(this, "Ошибка", "Введите марку машины.");
+                    ui->lineEdit_2->clear();
         return;
     }
 
@@ -66,7 +67,8 @@ void NewAuto::on_pushButton_clicked()
         else if (car.Confirm(_password) == false)
         {
             QMessageBox::warning(this, "Ошибка", "Попробуйте  заново ввести пароль.");
-            ui->lineEdit->clear();
+                ui->lineEdit_2->clear();
+            password.clear();
         }
 
     //}
