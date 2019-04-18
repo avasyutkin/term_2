@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>582</width>
-    <height>333</height>
+    <height>350</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -25,13 +25,6 @@
    <layout class="QGridLayout" name="gridLayout">
     <item row="0" column="0" colspan="6">
      <widget class="QTableWidget" name="tableWidget"/>
-    </item>
-    <item row="1" column="0">
-     <widget class="QPushButton" name="pushButton_2">
-      <property name="text">
-       <string>Назад</string>
-      </property>
-     </widget>
     </item>
     <item row="1" column="3">
      <widget class="QLabel" name="label">
@@ -55,13 +48,6 @@
        </size>
       </property>
      </spacer>
-    </item>
-    <item row="1" column="5">
-     <widget class="QPushButton" name="pushButton">
-      <property name="text">
-       <string>Добавить</string>
-      </property>
-     </widget>
     </item>
     <item row="1" column="1">
      <spacer name="horizontalSpacer">
@@ -89,6 +75,34 @@
       </property>
       <property name="placeholderText">
        <string>Введите марку и модель автомобиля</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="0">
+     <widget class="QPushButton" name="pushButton_2">
+      <property name="text">
+       <string>Назад</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="4">
+     <widget class="QLineEdit" name="lineEdit_2">
+      <property name="placeholderText">
+       <string>Введите пароль для подтверждения</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="5">
+     <widget class="QPushButton" name="pushButton">
+      <property name="text">
+       <string>Добавить</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="3">
+     <widget class="QLabel" name="label_2">
+      <property name="text">
+       <string>Пароль</string>
       </property>
      </widget>
     </item>

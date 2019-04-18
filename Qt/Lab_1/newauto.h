@@ -23,6 +23,7 @@ private slots:
 private:
     Ui::NewAuto *ui;
     QString newcar;
+        QString password;
 };
 
 #endif // NEWAUTO_H

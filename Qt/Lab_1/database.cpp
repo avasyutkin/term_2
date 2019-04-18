@@ -8,6 +8,7 @@
 #include <sstream>
 #include <cstdlib>
 #include <QTextStream>
+#include <QDebug>
 
 using namespace std;
 
@@ -446,7 +447,7 @@ bool DataBase::registsamelp(string lp)
 
 bool DataBase::parse(string i)
 {
-    for(int a = 0; a < i.length(); a++)
+    for (int a = 0; a < i.length(); a++)
         while (i[a] >= '0' && i[a] <= '9')
             if (i[a] >= '0' && i[a] <= '9')
                 return 0;
@@ -454,3 +455,22 @@ bool DataBase::parse(string i)
                 return 1;
 }
 
+bool DataBase::sameCar(string newcar)
+{
+    bool a = false;
+    for(unsigned i=0; i < carvector.size(); i++)
+    {
+            if (newcar==carvector.at(i).autocar) a = true;
+}
+    if(a == true) return 0; else return 1;
+}
+
+bool DataBase::Confirm(string password)
+{
+    DataBase pass;
+    pass.usertovector("commondb");
+    if (pass.getpass("password") == password)
+        return true;
+    else
+        return false;
+}

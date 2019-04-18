@@ -42,17 +42,33 @@ void NewAuto::on_pushButton_clicked()
 {
     newcar = ui->lineEdit->text();
     DataBase car;
-    string _newcar = newcar.toLocal8Bit().constData();;
+    string _newcar = newcar.toLocal8Bit().constData();
+    password = ui->lineEdit_2->text();
+    string _password = password.toLocal8Bit().constData();
     if(_newcar.size()==0)
     {
         QMessageBox::warning(this, "Ошибка", "Введите марку машины.");
         return;
     }
-    else if (_newcar.size()!=0)
-    {
-        car.addNewCar(_newcar);
-        QMessageBox::information(this, "Успешно", "Новый автомобиль добавлен.");
-        this->close();
-        delete this;
-    }
+
+   // if (car.sameCar(_newcar))
+     //   QMessageBox::warning(this, "Ошибка", "Такая машина уже приобретена.");
+
+    //else if (!car.sameCar(_newcar))
+   // {
+        if(car.Confirm(_password) == true)
+        {
+            car.addNewCar(_newcar);
+            QMessageBox::information(this, "Успешно", "Новый автомобиль добавлен.");
+            this->close();
+            delete this;
+        }
+        else if (car.Confirm(_password) == false)
+        {
+            QMessageBox::warning(this, "Ошибка", "Попробуйте  заново ввести пароль.");
+            ui->lineEdit->clear();
+        }
+
+    //}
 }
+

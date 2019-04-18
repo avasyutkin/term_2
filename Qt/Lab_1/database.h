@@ -93,6 +93,7 @@ public:
     string getSearchCarDateByID(string i, string name, int a);
     int getMyJournalCarSize(string id, string name);
     bool parse(string i);
+    bool sameCar(string newcar);
 
 private:
     string _tableName;
