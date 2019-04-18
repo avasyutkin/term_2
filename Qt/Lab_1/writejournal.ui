@@ -7,13 +7,13 @@
     <x>0</x>
     <y>0</y>
     <width>430</width>
-    <height>150</height>
+    <height>110</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Запись на рейс</string>
   </property>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>41</x>
