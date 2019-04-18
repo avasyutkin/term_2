@@ -1,13 +1,24 @@
 #include "server.h"
+
 #include <QTcpServer>
 #include <QTcpSocket>
+
 #include <QTextEdit>
 #include <QVBoxLayout>
 #include <QLabel>
+
 #include <QDataStream>
 #include <QTime>
-#include <sstream>
+#include <QDebug>
+
+#include <QTableWidget>
+#include <iostream>
+#include <fstream>
+#include <string>
 #include <cstdlib>
+#include <sstream>
+
+using namespace std;
 
 Server::Server(quint16 port): _nextBlockSize(0){
     _tcpServer = new QTcpServer(this);
@@ -26,33 +37,36 @@ Server::Server(quint16 port): _nextBlockSize(0){
     layout->addWidget(new QLabel("<H1>Server</H1>"));
     layout->addWidget(_text);
     setLayout(layout);
+    setWindowTitle("Server");
+    setArray();
 }
 
-void Server::slotNewConnection()
-{
-    //QTcpSocket* _clientSocket = new QTcpSocket;
-    _clientSocket = _tcpServer->nextPendingConnection();
-    int idusersocs=_clientSocket->socketDescriptor();
-    SClients[idusersocs]=_clientSocket;
-    connect(SClients[idusersocs], SIGNAL(disconnected()), SClients[idusersocs], SLOT(deleteLater()));
-    connect(SClients[idusersocs], SIGNAL(readyRead()), this, SLOT(slotReadClient()));
+void Server::slotNewConnection(){
+    _clientSocket1 = _tcpServer->nextPendingConnection();
+    qintptr number = _clientSocket1->socketDescriptor();
+    //qDebug() << number;
+    Clients[number]=_clientSocket1;
 
-    sendToClient(SClients[idusersocs], "Server response: connected.");
-    _clientSocket->write("Server response: connected.\n\r");
+    connect(Clients[number], SIGNAL(disconnected()), Clients[number], SLOT(deleteLater()));
+    connect(Clients[number], SIGNAL(readyRead()), this, SLOT(slotReadClient()));
+
+    sendToClient(Clients[number], "Hello, game is started!");
+
+    //sendToClient(Clients[number], "Server response: connected.\r\nHello, I am " + QString::number(number) + " client! You can use me!");
+    //_clientSocket->write("Server response: connected.\n\r");
 }
 
-void Server::slotReadClient()
-{
+void Server::slotReadClient(){
     //Вариант 1
-    /*while(_clientSocket->bytesAvailable()>0){
-        QByteArray array = _clientSocket->readAll();
-        _clientSocket->write(array);
-    }
+    //    while(_clientSocket->bytesAvailable()>0){
+    //        QByteArray array = _clientSocket->readAll();
+    //        _clientSocket->write(array);
+    //    }
 
 
     //Вариант 2
     //QTcpSocket *sckt = dynamic_cast<QTcpSocket *>(sender());
-    if (!_clientSocket->canReadLine()) return;
+    /*if (!_clientSocket->canReadLine()) return;
 
     char buf[1024];
     _clientSocket->readLine(buf, sizeof(buf));
@@ -60,48 +74,97 @@ void Server::slotReadClient()
     //_text->setText(buf);*/
 
     //Вариант 3
-    foreach(int i,SClients.keys())
-    {
-        QDataStream in(SClients[i]);
+    QString symbol;
+    foreach(qintptr i, Clients.keys()){
+        //qDebug() << i;
+        //qDebug() << Clients.keys();
+        QDataStream in(Clients[i]);
         //in.setVersion(QDataStream::Qt_5_10);
-
+        QString symbol;
         while(true){
-            if (_nextBlockSize == 0)
-            {
-                if (SClients[i]->bytesAvailable() < static_cast<int>(sizeof(quint16)))
+            if (_nextBlockSize == 0){
+                if (Clients[i]->bytesAvailable() <static_cast<int>(sizeof(quint16))){
                     break;
+                }
+
                 in >> _nextBlockSize;
             }
-            if (SClients[i]->bytesAvailable() < _nextBlockSize)
+
+            if (Clients[i]->bytesAvailable() < _nextBlockSize){
                 break;
+            }
 
             QTime time;
             QString str;
-            in >> time >> str;
+            int num;
+            in >> time >> str >> num;
+            string textInput = str.toUtf8().constData();
 
-            if(str.size() == 0)
-            {
-                QString message = time.toString() + " " + "Locked.";
-                _text -> append(message);
+            istringstream text(textInput);
+            string n;
+            string a, b;
+            int k = 0;
+            while(getline(text, n, ' ')){
+                if(k == 0) a = n;
+                if(k == 1) b = n;
+                k++;
             }
-            else
-            {
-                QString message = time.toString() +  " " + "Unlocked. Client has sent - " + str + ".";
+
+            QString _a = QString::fromLocal8Bit(a.c_str());
+            QString _b = QString::fromLocal8Bit(b.c_str());
+
+            int num1 = stoi(a)-1;
+            int num2 = stoi(b)-1;
+            QString a1;
+            if(num == 1){
+                a1 = " x ";
+            }
+            else a1 = " o ";
+            xo[num1][num2] = a1;
+            //if (str == "1"){
+            //if(str != ""){
+            //QString message = time.toString() + " " + "Client " + QString::number(i) + " has sent - " + str + ".";
+            _text -> clear();
+            QString message = "Game is started!";
+            _text->append(message);
+            for(int i = 0; i < 3; i++){
+                QString message = xo[i][0] + xo[i][1] + xo[i][2];
                 _text->append(message);
             }
 
-            //        QString message = time.toString() + " " + "Client has sent - " + str + ".";
-            //        _text->append(message);
+            if((xo[num1][num2 % 3] == a1 && xo[num1][(num2 + 1) % 3] == a1 && xo[num1][(num2 + 2) % 3] == a1) ||
+                    (xo[num1 % 3][num2] == a1 && xo[(num1 + 1) % 3][num2] == a1 && xo[(num1 + 2) % 3][num2] == a1) ||
+                    (xo[0][0] == a1 && xo[1][1] == a1 && xo[2][2] == a1) ||
+                    (xo[0][2] == a1 && xo[1][1] == a1 && xo[2][0] == a1) ||
+                    (xo[0][0] != " - " && xo[0][1] != " - " && xo[0][2] != " - " &&
+                     xo[1][0] != " - " && xo[1][1] != " - " && xo[1][2] != " - " &&
+                     xo[2][0] != " - " && xo[2][1] != " - " && xo[2][2] != " - "))
+            {
+                QString message = "Game is finished!";
+                _text->append(message);
+                this->close();
+                sendToClient(Clients[i], ("Game is finished!"));
+            }
 
-            _nextBlockSize = 0;
-
-            sendToClient(SClients[i], "Server response: received \"" + str + "\".");
         }
+//for(int j = 0; i < 3; i++){
+//sendToClient(Clients[i], (xo[0][0] + xo[0][1] + xo[0][2] + "\r\n" + xo[1][0] + xo[1][1] + xo[1][2] + "\r\n" + xo[2][0] + xo[2][1] + xo[2][2]));
+//}
+//}
+//            if(str == "0"){
+//                //SClients[i]->disconnectFromHost();
+//                QString message = time.toString() + " " + "Server for client " + QString::number(i) + " is closed";
+//                _text->append(message);
+//            }
+        _nextBlockSize = 0;
+        //if(str != ""){
+
+
     }
 }
 
-void Server::sendToClient(QTcpSocket* socket, const QString &str)
-{
+
+void Server::sendToClient(QTcpSocket* socket, const QString &str){
     QByteArray arrBlock;
     QDataStream out(&arrBlock, QIODevice::WriteOnly);
     //out.setVersion(QDataStream::Qt_5_10);
@@ -112,16 +175,3 @@ void Server::sendToClient(QTcpSocket* socket, const QString &str)
 
     socket->write(arrBlock);
 }
-
-void Server::TicTokToe(string ttt)
-{
-//    string token;
-//    int k = 0;
-//    istringstream str(ttt);
-//    while (getline(str, token, ' '))
-//    {
-//        if (k == 0)
-//    }
-
-}
-

@@ -1,5 +1,7 @@
 #include "client.h"
+
 #include <QTcpSocket>
+
 #include <QTextEdit>
 #include <QLineEdit>
 #include <QPushButton>
@@ -7,8 +9,9 @@
 #include <QLabel>
 #include <QTime>
 
-Client::Client(QString strHost, quint16 port): _nextBlockSize(0)
-{
+using namespace std;
+
+Client::Client(const QString &strHost, QString name, quint16 port): _nextBlockSize(0){
     _tcpSocket = new QTcpSocket(this);
     _tcpSocket->connectToHost(strHost, port);
 
@@ -17,6 +20,7 @@ Client::Client(QString strHost, quint16 port): _nextBlockSize(0)
 
     _textInfo = new QTextEdit();
     _textInput = new QLineEdit();
+
     _textInfo->setReadOnly(true);
     QPushButton *button = new QPushButton("Send");
 
@@ -24,15 +28,15 @@ Client::Client(QString strHost, quint16 port): _nextBlockSize(0)
     connect(_textInput, SIGNAL(returnPressed()), this, SLOT(slotSendToServer()));
 
     QVBoxLayout *layout = new QVBoxLayout();
-    layout->addWidget(new QLabel("<H1>Client</H1>"));
+    layout->addWidget(new QLabel("<H1>"+ name +"</H1>"));
     layout->addWidget(_textInfo);
     layout->addWidget(_textInput);
     layout->addWidget(button);
     setLayout(layout);
+    setWindowTitle("Client");
 }
 
-void Client::slotReadyRead()
-{
+void Client::slotReadyRead(){
     QDataStream in(_tcpSocket);
     //in.setVersion(QDataStream::Qt_5_10);
 
@@ -41,8 +45,10 @@ void Client::slotReadyRead()
             if (_tcpSocket->bytesAvailable() <static_cast<int>(sizeof(quint16))){
                 break;
             }
+
             in >> _nextBlockSize;
         }
+
         if (_tcpSocket->bytesAvailable() < _nextBlockSize){
             break;
         }
@@ -50,19 +56,19 @@ void Client::slotReadyRead()
         QTime time;
         QString str;
         in >> time >> str;
-        _textInfo->append(time.toString() + " " + str);
+        //_textInfo->append(time.toString() + " " + str);
+        _textInfo->append(str);
 
         _nextBlockSize = 0;
     }
 }
 
-void Client::slotSendToServer()
-{  //что бы не передавалось, оно будет начинаться с размера блока
+void Client::slotSendToServer(){
     QByteArray  arrBlock;
     QDataStream out(&arrBlock, QIODevice::WriteOnly);
     //out.setVersion(QDataStream::Qt_5_10);
 
-    out << quint16(0) << QTime::currentTime() << _textInput->text();
+    out << quint16(0) << QTime::currentTime() << _textInput->text() << getsymbol();
     out.device()->seek(0);
     out<< quint16(arrBlock.size() - static_cast<int>(sizeof(quint16)));
 
@@ -70,8 +76,7 @@ void Client::slotSendToServer()
     _textInput->setText("");
 }
 
-void Client::slotConnected()
-{
+void Client::slotConnected(){
     _textInfo->append("Received the \"connected\" signal.");
 }
 

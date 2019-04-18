@@ -4,22 +4,29 @@
 #include <QWidget>
 #include <QTcpSocket>
 
+using namespace std;
 class QTextEdit;
 class QLineEdit;
 
-class Client: public QWidget
-{
+class Client: public QWidget{
     Q_OBJECT
 
 private:
     QTcpSocket *_tcpSocket;
-
     QTextEdit *_textInfo;
     QLineEdit *_textInput;
     quint16 _nextBlockSize;
+    int num;
+
+    int getsymbol(){
+        return num;
+    }
 
 public:
-    Client(QString strHost, quint16 port);
+    Client(const QString &strHost, QString name, quint16 port);
+    void setsymbol(int _num){
+        num = _num;
+    }
 
 public slots:
     void slotReadyRead();

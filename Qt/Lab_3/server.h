@@ -1,39 +1,46 @@
 #ifndef SEVER_H
 #define SEVER_H
-
 #include <QWidget>
 #include <QTcpSocket>
-#include <string>
 
 class QTcpServer;
 class QTcpSocket;
 class QTextEdit;
 
-using namespace std;
-
 class Server: public QWidget{
-    Q_OBJECT
+Q_OBJECT
 
 private:
-    QTcpServer *_tcpServer;
-    QTcpSocket *_clientSocket;
 
-    quint16 _nextBlockSize;
+    QString xo[3][3];
 
-    QTextEdit *_text;
-    QMap<int,QTcpSocket *> SClients;
+void setArray(){
+    for(int i = 0; i < 3; i++){
+        for(int j = 0; j < 3; j++){
+            xo[i][j] = " - ";
+        }
+    }
+}
 
-    void sendToClient(QTcpSocket *socket, const QString &str);
-    bool stack;
+QTcpServer *_tcpServer;
+QTcpSocket *_clientSocket1;
+quint16 _nextBlockSize;
+QTextEdit *_text;
+QMap<qintptr,QTcpSocket *> Clients;
+QString symbol1;
+QString symbol2;
+
+void sendToClient(QTcpSocket *socket, const QString &str);
 
 public:
-    Server(quint16 port);
+
+Server(quint16 port);
 
 public slots:
-    virtual void slotNewConnection();
-    void slotReadClient();
-    void TicTokToe(string ttt);
-    char tiktoktoe[3][3] = '-', '-', '-', '-', '-', '-', '-',;
+
+virtual void slotNewConnection();
+void slotReadClient();
+
 };
 
 #endif // SEVER_H
