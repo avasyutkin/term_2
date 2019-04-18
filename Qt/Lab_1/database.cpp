@@ -222,7 +222,7 @@ string DataBase::getSearchCarTimeByID(string i, string name, int a)
         if(journaal.at(ii).driver == name+"("+i+")")
             _i++;
         if (a == _i)
-            return journaal.at(ii).date;
+            return journaal.at(ii).time;
     }
 }
 
