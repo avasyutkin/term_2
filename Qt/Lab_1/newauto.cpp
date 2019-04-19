@@ -53,7 +53,11 @@ void NewAuto::on_pushButton_clicked()
     }
 
     if (car.sameCar(_newcar) == true)
+    {
         QMessageBox::warning(this, "Ошибка", "Такая машина уже приобретена.");
+        ui->lineEdit->clear();
+        ui->lineEdit_2->clear();
+    }
 
     else if (car.sameCar(_newcar) == false)
     {

@@ -4,6 +4,7 @@
 #include <QString>
 #include <QMessageBox>
 #include <QTextStream>
+#include <QDebug>
 
 WiewJournalUser::WiewJournalUser(QWidget *parent) :
     QDialog(parent),
@@ -14,6 +15,7 @@ WiewJournalUser::WiewJournalUser(QWidget *parent) :
     DataBase user;
     user.usertovector(aaa);
     ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    ui->tableWidget->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->tableWidget->setColumnCount(4);
     ui->tableWidget->setHorizontalHeaderLabels(QStringList() << "ID" << "Водитель" << "Дата рождения" << "Номер телефона");
     ui->tableWidget->setRowCount(user.getJournalUserSize());
