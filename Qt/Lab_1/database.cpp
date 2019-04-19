@@ -9,6 +9,7 @@
 #include <cstdlib>
 #include <QTextStream>
 #include <QDebug>
+#include <algorithm>
 
 using namespace std;
 
@@ -434,7 +435,6 @@ void DataBase::changepass(string a, string newpasss)
 bool DataBase::registsamelp(string lp)
 {
     for(unsigned i=0; i < user.size(); i++)
-    {
         while (lp==(user.at(i).login+":"+user.at(i).password))
         {
             if (lp==(user.at(i).login+":"+user.at(i).password))
@@ -442,7 +442,6 @@ bool DataBase::registsamelp(string lp)
             else
                 return 0;
         }
-    }
 }
 
 bool DataBase::parse(string i)
@@ -455,14 +454,16 @@ bool DataBase::parse(string i)
                 return 1;
 }
 
+
 bool DataBase::sameCar(string newcar)
 {
-    bool a = false;
-    for(unsigned i=0; i < carvector.size(); i++)
-    {
-            if (newcar==carvector.at(i).autocar) a = true;
-}
-    if(a == true) return 0; else return 1;
+    DataBase car;
+    car.cartovector("car");
+    int a = car.getCarSize();
+    for (int i = 0; i < a; i++)
+        if (newcar == car.carvector.at(i).autocar)
+            return 1;
+    return 0;
 }
 
 bool DataBase::Confirm(string password)
