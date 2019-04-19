@@ -8,38 +8,38 @@ class QTcpSocket;
 class QTextEdit;
 
 class Server: public QWidget{
-Q_OBJECT
+    Q_OBJECT
 
 private:
 
     QString xo[3][3];
 
-void setArray(){
-    for(int i = 0; i < 3; i++){
-        for(int j = 0; j < 3; j++){
-            xo[i][j] = " - ";
+    void setArray(){
+        for(int i = 0; i < 3; i++){
+            for(int j = 0; j < 3; j++){
+                xo[i][j] = " - ";
+            }
         }
     }
-}
 
-QTcpServer *_tcpServer;
-QTcpSocket *_clientSocket1;
-quint16 _nextBlockSize;
-QTextEdit *_text;
-QMap<qintptr,QTcpSocket *> Clients;
-QString symbol1;
-QString symbol2;
+    QTcpServer *_tcpServer;
+    QTcpSocket *_clientSocket1;
+    quint16 _nextBlockSize;
+    QTextEdit *_text;
+    QMap<qintptr,QTcpSocket *> Clients;
+    QMap<qintptr, int> Check;
+    int nk = 0;
 
-void sendToClient(QTcpSocket *socket, const QString &str);
+    void sendToClient(QTcpSocket *socket, const QString &str);
 
 public:
 
-Server(quint16 port);
+    Server(quint16 port);
 
 public slots:
 
-virtual void slotNewConnection();
-void slotReadClient();
+    virtual void slotNewConnection();
+    void slotReadClient();
 
 };
 

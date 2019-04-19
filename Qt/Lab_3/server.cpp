@@ -74,14 +74,29 @@ void Server::slotReadClient(){
     //_text->setText(buf);*/
 
     //Вариант 3
+    qintptr key = 0;
+    bool flag = true;
+    bool flag1 = true;
+
+    QString messfinish = "";
+    QString messafter = "";
+    QString winner = "";
+    QString loss = "";
+
     QString symbol;
+    QString mess = "Game is started!\r\n";
+    nk++;
+    int a = 0;
+
     foreach(qintptr i, Clients.keys()){
+        a++;
         //qDebug() << i;
         //qDebug() << Clients.keys();
         QDataStream in(Clients[i]);
         //in.setVersion(QDataStream::Qt_5_10);
-        QString symbol;
+
         while(true){
+
             if (_nextBlockSize == 0){
                 if (Clients[i]->bytesAvailable() <static_cast<int>(sizeof(quint16))){
                     break;
@@ -94,10 +109,24 @@ void Server::slotReadClient(){
                 break;
             }
 
+            if(Check[i] != 1) if(nk == 1 || nk == 2) Check[i] = nk;
+
+            if(nk % 2 == 1){
+                symbol = " x ";
+            }
+            else symbol = " o ";
+
             QTime time;
             QString str;
-            int num;
-            in >> time >> str >> num;
+            in >> time >> str;
+            bool correct = false;
+            for(int j = 0; j < 4; j++){
+                for(int m = 0; m < 4; m++){
+                    if(str == QString::number(j) + ' ' + QString::number(m)) correct = true;
+                }
+            }
+            if(correct == false) break;
+
             string textInput = str.toUtf8().constData();
 
             istringstream text(textInput);
@@ -110,17 +139,23 @@ void Server::slotReadClient(){
                 k++;
             }
 
+            key = i;
             QString _a = QString::fromLocal8Bit(a.c_str());
             QString _b = QString::fromLocal8Bit(b.c_str());
 
             int num1 = stoi(a)-1;
             int num2 = stoi(b)-1;
-            QString a1;
-            if(num == 1){
-                a1 = " x ";
+            if((Check[i] % 2) != (nk % 2)){
+
+                messafter ="\r\nВы уже сделали свой ход!";
+                nk = nk - 1;
+                break;
             }
-            else a1 = " o ";
-            xo[num1][num2] = a1;
+            if(xo[num1][num2] == " - ") xo[num1][num2] = symbol;
+            else {
+                messafter = messafter + "\r\nЭто поле уже заполнено. Попробуйте сделать другой ход.";
+                nk = nk - 1;
+            }
             //if (str == "1"){
             //if(str != ""){
             //QString message = time.toString() + " " + "Client " + QString::number(i) + " has sent - " + str + ".";
@@ -131,31 +166,47 @@ void Server::slotReadClient(){
                 QString message = xo[i][0] + xo[i][1] + xo[i][2];
                 _text->append(message);
             }
-
-            if((xo[num1][num2 % 3] == a1 && xo[num1][(num2 + 1) % 3] == a1 && xo[num1][(num2 + 2) % 3] == a1) ||
-                    (xo[num1 % 3][num2] == a1 && xo[(num1 + 1) % 3][num2] == a1 && xo[(num1 + 2) % 3][num2] == a1) ||
-                    (xo[0][0] == a1 && xo[1][1] == a1 && xo[2][2] == a1) ||
-                    (xo[0][2] == a1 && xo[1][1] == a1 && xo[2][0] == a1) ||
-                    (xo[0][0] != " - " && xo[0][1] != " - " && xo[0][2] != " - " &&
-                     xo[1][0] != " - " && xo[1][1] != " - " && xo[1][2] != " - " &&
-                     xo[2][0] != " - " && xo[2][1] != " - " && xo[2][2] != " - "))
-            {
-                QString message = "Game is finished!";
-                _text->append(message);
-                this->close();
-                sendToClient(Clients[i], ("Game is finished!"));
+            //QString message = "\r\n";
+            if(xo[num1][num2 % 3] == symbol && xo[num1][(num2 + 1) % 3] == symbol && xo[num1][(num2 + 2) % 3] == symbol){
+                flag = false;
             }
-
+            else if(xo[num1 % 3][num2] == symbol && xo[(num1 + 1) % 3][num2] == symbol && xo[(num1 + 2) % 3][num2] == symbol){
+                flag = false;
+            }
+            else if(xo[0][0] == symbol && xo[1][1] == symbol && xo[2][2] == symbol){
+                flag = false;
+            }
+            else if(xo[0][2] == symbol && xo[1][1] == symbol && xo[2][0] == symbol){
+                flag = false;
+            }
+            else if(xo[0][0] != " - " && xo[0][1] != " - " && xo[0][2] != " - " && xo[1][0] != " - " && xo[1][1] != " - " && xo[1][2] != " - "
+                    && xo[2][0] != " - " && xo[2][1] != " - " && xo[2][2] != " - "){
+                flag1 = false;
+            }
+            if(flag == false){
+                QString message = "\r\nGame is finished!";
+                _text->append(message);
+                //this->close();
+                messfinish = "\r\nGame is finished!";
+                if(flag1 == true || flag == false) winner = "\r\n\r\nВы выиграли!";
+            }
         }
-//for(int j = 0; i < 3; i++){
-//sendToClient(Clients[i], (xo[0][0] + xo[0][1] + xo[0][2] + "\r\n" + xo[1][0] + xo[1][1] + xo[1][2] + "\r\n" + xo[2][0] + xo[2][1] + xo[2][2]));
-//}
-//}
-//            if(str == "0"){
-//                //SClients[i]->disconnectFromHost();
-//                QString message = time.toString() + " " + "Server for client " + QString::number(i) + " is closed";
-//                _text->append(message);
-//            }
+        foreach(qintptr j, Clients.keys()){
+            if(winner == "\r\n\r\nВы выиграли!") loss = "\r\n\r\nК сожалению, вы проиграли.";
+            if(key == j) sendToClient(Clients[j], mess + (xo[0][0] + xo[0][1] + xo[0][2] + "\r\n" + xo[1][0] + xo[1][1] + xo[1][2] + "\r\n" + xo[2][0] + xo[2][1] + xo[2][2]) + messafter /* + messfinish */ + winner);
+            if(key != j) sendToClient(Clients[j], mess + (xo[0][0] + xo[0][1] + xo[0][2] + "\r\n" + xo[1][0] + xo[1][1] + xo[1][2] + "\r\n" + xo[2][0] + xo[2][1] + xo[2][2]) /* + messfinish */ + loss);
+        }
+        if(nk % 2 == 0 && (flag == false || flag1 == false)){
+            nk = 0;
+            setArray();
+        }
+        //}
+
+        //            if(str == "0"){
+        //                //SClients[i]->disconnectFromHost();
+        //                QString message = time.toString() + " " + "Server for client " + QString::number(i) + " is closed";
+        //                _text->append(message);
+        //            }
         _nextBlockSize = 0;
         //if(str != ""){
 

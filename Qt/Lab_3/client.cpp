@@ -57,6 +57,7 @@ void Client::slotReadyRead(){
         QString str;
         in >> time >> str;
         //_textInfo->append(time.toString() + " " + str);
+        _textInfo->clear();
         _textInfo->append(str);
 
         _nextBlockSize = 0;
@@ -68,7 +69,7 @@ void Client::slotSendToServer(){
     QDataStream out(&arrBlock, QIODevice::WriteOnly);
     //out.setVersion(QDataStream::Qt_5_10);
 
-    out << quint16(0) << QTime::currentTime() << _textInput->text() << getsymbol();
+    out << quint16(0) << QTime::currentTime() << _textInput->text();
     out.device()->seek(0);
     out<< quint16(arrBlock.size() - static_cast<int>(sizeof(quint16)));
 

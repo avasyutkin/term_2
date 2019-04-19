@@ -12,11 +12,9 @@ int main(int argc, char *argv[])
     server.show();
 
     Client client1("localhost", "Player 1", 8080);
-    client1.setsymbol(1);
     client1.show();
 
     Client client2("localhost", "Player 2", 8080);
-    client2.setsymbol(2);
     client2.show();
 
     //############

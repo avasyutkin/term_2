@@ -16,17 +16,9 @@ private:
     QTextEdit *_textInfo;
     QLineEdit *_textInput;
     quint16 _nextBlockSize;
-    int num;
-
-    int getsymbol(){
-        return num;
-    }
 
 public:
     Client(const QString &strHost, QString name, quint16 port);
-    void setsymbol(int _num){
-        num = _num;
-    }
 
 public slots:
     void slotReadyRead();
