@@ -20,6 +20,7 @@ Client::Client(const QString &strHost, QString name, quint16 port): _nextBlockSi
 
     _textInfo = new QTextEdit();
     _textInput = new QLineEdit();
+    _textInput->setMaxLength(3);
 
     _textInfo->setReadOnly(true);
     QPushButton *button = new QPushButton("Send");
