@@ -3,11 +3,12 @@
 #include "database.h"
 #include <QMessageBox>
 
-
 registration::registration(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::registration)
 {
+    DataBase user;
+    user.DataBaseConnect();
     ui->setupUi(this);
 }
 
@@ -23,8 +24,7 @@ void registration::on_pushButton_clicked()
     password = ui->password->text();
 
     DataBase user;
-    user.DataBaseConnect();
-
+    user.SameUser(login);
     if(ui->checkBox->isChecked() && ui->checkBox_2->isChecked())
         QMessageBox::warning(this, "Ошибка", "Нельзя быть администраторм и водителем одновременно.");
 
@@ -51,4 +51,9 @@ void registration::on_pushButton_clicked()
     }
 }
 
-
+void registration::on_pushButton_2_clicked()
+{
+    close();
+    autorization = new authorization();
+    autorization -> show();
+}

@@ -23,6 +23,7 @@ public:
     DataBase();
     void DataBaseConnect();
     void AddUser(QString login, QString password, QString name, QString post);
+    bool SameUser(QString name);
 
 private:
 };

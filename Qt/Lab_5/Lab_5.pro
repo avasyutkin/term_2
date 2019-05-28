@@ -25,15 +25,18 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += \
+        authorization.cpp \
         database.cpp \
         main.cpp \
         registration.cpp
 
 HEADERS += \
+        authorization.h \
         database.h \
         registration.h
 
 FORMS += \
+    authorization.ui \
     registration.ui
 
 # Default rules for deployment.
