@@ -68,7 +68,7 @@ int main(int argc, char *argv[]){
     //############
 
     std::string text1;
-    std::cin>>text1;
+    std::getline(std::cin, text1);
     int size = text1.length();
     std::cout<<size<<"\n";
     char* text = new char[size];
@@ -77,8 +77,7 @@ int main(int argc, char *argv[]){
         text[i] = text1[i];
         std::cout<<text[i];
     }
-    std::cout<<"\n";
-    std::cout<<text;
+    std::cout<<"\n"<<text;
 
     char* textenc = new char[size+16];
     char* textdec = new char[size];
