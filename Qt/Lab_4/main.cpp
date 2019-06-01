@@ -20,6 +20,10 @@ int do_crypt(char* textin, char* textout, int do_encrypt){
     unsigned char inbuf[BUFSIZE], outbuf[BUFSIZE + EVP_MAX_BLOCK_LENGTH]; //EVP_MAX_BLOCK_LENGTH = 128 бит
     int inlen, outlen;
 
+    char *buff = new char[inlen+16];
+    char *buff_update = new char[inlen+16];
+    char *buff_final = new char[inlen+16];
+
     cout<<textin<<"\n";
 
     inlen = strlen(textin);
@@ -50,16 +54,26 @@ int do_crypt(char* textin, char* textout, int do_encrypt){
     printf("  %d B, OutU:\n", outlen);
     //printCharsAsHex(outbuf, outlen);
     //}
+    for(int i = 0; i < inlen; i++)
+        buff_update[i] = outbuf[i];
+    strcpy(buff, buff_update);
+    cout<<"\n"<<outbuf<<"\n"<<buff_update<<"\n"<<buff<<"\n"<<"\n";
+
 
     if(!EVP_CipherFinal_ex(ctx, outbuf, &outlen)){
         EVP_CIPHER_CTX_free(ctx);
         return 0;
     }
+
     //fwrite(outbuf, 1, outlen, out);
     printf("  %d B, OutF:\n", outlen);
     //printCharsAsHex(outbuf, outlen);
 
-    cout<<outbuf;
+    for(int i = 0; i < inlen; i++)
+        buff_final[i] = outbuf[i];
+    strcat(buff, buff_final);
+    cout<<buff_final<<"\n"<<buff;
+
     EVP_CIPHER_CTX_free(ctx);
     return 1;
 }
@@ -82,20 +96,11 @@ int main(int argc, char *argv[]){
     char* textdec = new char[size];
 
     printf("ENCRYPT:\n\n");
-    //FILE *encode_file = fopen("D:\\181_331_vasyutkin\\vasyutkin_term2\\Qt\\Lab_4\\file.txt", "rb");
-    //FILE *decode_file = fopen("D:\\181_331_vasyutkin\\vasyutkin_term2\\Qt\\Lab_4\\file1.txt", "wb");
     do_crypt(text, textenc, 1); // 0 - decrypt, 1 - encrypt
-    //fclose(encode_file);
-    //fclose(decode_file);
-
     printf("\n---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ----\n\n");
     printf("DECRYPT:\n\n");
 
-    //encode_file = fopen("D:\\181_331_vasyutkin\\vasyutkin_term2\\Qt\\Lab_4\\file1.txt", "rb");
-    //decode_file = fopen("D:\\181_331_vasyutkin\\vasyutkin_term2\\Qt\\Lab_4\\file2.txt", "wb");
    // do_crypt(*textenc, textdec, 0); // 0 - decrypt, 1 - encrypt
-    //fclose(encode_file);
-    //fclose(decode_file);
 
     //############
 
