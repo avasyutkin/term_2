@@ -10,6 +10,8 @@
 #define BUFSIZE 1024 //Любое число байт, кратное 16.
 using namespace std;
 
+static char *booof = new char[1024];
+
 void printCharsAsHex(unsigned char *buf, int len){
     for(int i=0; i<len; i++) printf("0x%02x ", buf[i]);
     printf("\n\n");
@@ -54,10 +56,10 @@ int do_crypt(char* textin, char* textout, int do_encrypt){
     printf("  %d B, OutU:\n", outlen);
     //printCharsAsHex(outbuf, outlen);
     //}
-    for(int i = 0; i < inlen; i++)
+    for(int i = 0; i < inlen+16; i++)
         buff_update[i] = outbuf[i];
     strcpy(buff, buff_update);
-    cout<<"\n"<<outbuf<<"\n"<<buff_update<<"\n"<<buff<<"\n"<<"\n";
+    //cout<<"\n"<<outbuf<<"\n"<<buff_update<<"\n"<<buff<<"\n"<<"\n";
 
 
     if(!EVP_CipherFinal_ex(ctx, outbuf, &outlen)){
@@ -69,10 +71,13 @@ int do_crypt(char* textin, char* textout, int do_encrypt){
     printf("  %d B, OutF:\n", outlen);
     //printCharsAsHex(outbuf, outlen);
 
-    for(int i = 0; i < inlen; i++)
+    for(int i = 0; i < inlen+16; i++)
         buff_final[i] = outbuf[i];
+
     strcat(buff, buff_final);
-    cout<<buff_final<<"\n"<<buff;
+    //cout<<buff_final<<"\n"<<buff;
+    strcpy(booof, buff);
+    cout<<"\n"<<"\n"<<"gggggggggghghgjhgjhg       "<<booof;
 
     EVP_CIPHER_CTX_free(ctx);
     return 1;
@@ -100,8 +105,15 @@ int main(int argc, char *argv[]){
     printf("\n---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ----\n\n");
     printf("DECRYPT:\n\n");
 
-   // do_crypt(*textenc, textdec, 0); // 0 - decrypt, 1 - encrypt
+    strcpy(textenc, booof);
 
+    cout<<"textenc    "<<booof;
+
+
+    do_crypt(booof, textdec, 0); // 0 - decrypt, 1 - encrypt
+
+    //strcpy(textdec, booof);
+    cout<<"textdec   "<<booof;
     //############
 
     return a.exec();
