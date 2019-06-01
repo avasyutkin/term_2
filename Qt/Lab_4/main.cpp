@@ -8,6 +8,7 @@
 #include <cstring>
 
 #define BUFSIZE 1024 //Любое число байт, кратное 16.
+using namespace std;
 
 void printCharsAsHex(unsigned char *buf, int len){
     for(int i=0; i<len; i++) printf("0x%02x ", buf[i]);
@@ -19,10 +20,10 @@ int do_crypt(char* textin, char* textout, int do_encrypt){
     unsigned char inbuf[BUFSIZE], outbuf[BUFSIZE + EVP_MAX_BLOCK_LENGTH]; //EVP_MAX_BLOCK_LENGTH = 128 бит
     int inlen, outlen;
 
-    std::cout<<textin<<"\n";
+    cout<<textin<<"\n";
 
     inlen = strlen(textin);
-    std::cout<<inlen<<"\n";
+    cout<<inlen<<"\n";
 
     for(int i = 0; i < inlen; i++)
         inbuf[i] = textin[i];
@@ -58,6 +59,7 @@ int do_crypt(char* textin, char* textout, int do_encrypt){
     printf("  %d B, OutF:\n", outlen);
     //printCharsAsHex(outbuf, outlen);
 
+    cout<<outbuf;
     EVP_CIPHER_CTX_free(ctx);
     return 1;
 }
@@ -67,17 +69,14 @@ int main(int argc, char *argv[]){
 
     //############
 
-    std::string text1;
-    std::getline(std::cin, text1);
+    string text1;
+    getline(cin, text1);
     int size = text1.length();
-    std::cout<<size<<"\n";
+    cout<<size<<"\n";
     char* text = new char[size];
-    for (int i = 0; i < size; i++)
-    {
-        text[i] = text1[i];
-        std::cout<<text[i];
-    }
-    std::cout<<"\n"<<text;
+
+    strcpy((char*) text, text1.c_str());
+    cout<<text;
 
     char* textenc = new char[size+16];
     char* textdec = new char[size];
