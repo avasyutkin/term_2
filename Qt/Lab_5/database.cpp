@@ -37,7 +37,7 @@ bool DataBase::SameUser(QString name)
     database.exec("SELECT User, User FROM car_base_users");
     while (database.next()) {
         QString name_from_database = database.value(1).toString();
-        while ()
+        //while ()
         if (name == name_from_database)
         {
             return 0;

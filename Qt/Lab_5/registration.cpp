@@ -53,7 +53,7 @@ void registration::on_pushButton_clicked()
 
 void registration::on_pushButton_2_clicked()
 {
-    close();
     autorization = new authorization();
     autorization -> show();
+    close();
 }

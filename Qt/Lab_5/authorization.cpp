@@ -16,7 +16,7 @@ authorization::~authorization()
 
 void authorization::on_pushButton_2_clicked()
 {
-    this->close();
     registration *reg = new registration();
     reg->show();
+    this->close();
 }

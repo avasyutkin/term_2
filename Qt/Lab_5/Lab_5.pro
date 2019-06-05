@@ -5,6 +5,7 @@
 #-------------------------------------------------
 
 QT       += core gui sql
+QT += network
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -26,18 +27,24 @@ CONFIG += c++11
 
 SOURCES += \
         authorization.cpp \
+        client.cpp \
         database.cpp \
         main.cpp \
-        registration.cpp
+        registration.cpp \
+        server.cpp
 
 HEADERS += \
         authorization.h \
+        client.h \
         database.h \
-        registration.h
+        registration.h \
+        server.h
 
 FORMS += \
     authorization.ui \
-    registration.ui
+    client.ui \
+    registration.ui \
+    server.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
