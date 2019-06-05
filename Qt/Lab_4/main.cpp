@@ -22,16 +22,17 @@ int do_crypt(char* textin, int do_encrypt){
     unsigned char inbuf[BUFSIZE], outbuf[BUFSIZE + EVP_MAX_BLOCK_LENGTH]; //EVP_MAX_BLOCK_LENGTH = 128 бит
     int inlen, outlen;
 
+    inlen = 0;
+    outlen = 0;
+    inlen = strlen(textin);
+
     char *buff = new char[inlen+16];
     char *buff_update = new char[inlen+16];
     char *buff_final = new char[inlen+16];
 
     cout<<textin<<"\n";
 
-    inlen = strlen(textin);
-    cout<<inlen<<"\n";
-
-    for(int i = 0; i < inlen; i++)
+    for(int i = 0; i < inlen+16; i++)
         inbuf[i] = textin[i];
 
     unsigned char key[] = "0123456789abcdeF0123456789abcdeF"; //256 бит
@@ -65,10 +66,11 @@ int do_crypt(char* textin, int do_encrypt){
 
     printf("  %d B, OutF:\n", outlen);
 
-    for(int i = 0; i < inlen+16; i++)
-        buff_final[i] = outbuf[i];
-    if(do_encrypt == 1)
+    if(do_encrypt == 1){
+        for(int i = 0; i < inlen+16; i++)
+            buff_final[i] = outbuf[i];
         strcat(buff, buff_final);
+    }
     delete [] booof;
     strcpy(booof, buff);
     cout<<"\n"<<"\n"<<"booof       "<<booof;
@@ -87,14 +89,8 @@ int main(int argc, char *argv[]){
     string text1;
     getline(cin, text1);
     int size = text1.length();
-    cout<<size<<"\n";
     char* text = new char[size];
-
     strcpy((char*) text, text1.c_str());
-    cout<<text;
-
-    char* textenc = new char[size+16];
-    char* textdec = new char[size];
 
     printf("ENCRYPT:\n\n");
     do_crypt(text, 1); // 0 - decrypt, 1 - encrypt
@@ -106,3 +102,5 @@ int main(int argc, char *argv[]){
     delete[] booof;
     return a.exec();
 }
+
+//TEST
