@@ -1,106 +1,77 @@
 #include <QCoreApplication>
 #include <iostream>
+#include <QString>
+#include <QTextStream>
 #include <string.h>
 #include <stdio.h>
-#include <unistd.h>
+//#include <unistd.h>
 #include <openssl/evp.h>
+#include <openssl/err.h>
+#include <openssl/conf.h>
 #include <string>
 #include <cstring>
+#include <cstdio>
+#include <qdebug.h>
 
-#define BUFSIZE 1024 //Любое число байт, кратное 16.
 using namespace std;
 
-char *booof = new char[1024];
 
-void printCharsAsHex(unsigned char *buf, int len){
-    for(int i=0; i<len; i++) printf("0x%02x ", buf[i]);
-    printf("\n\n");
-}
+int do_crypt(unsigned char *plaintext, int plaintext_len, unsigned char *ciphertext, int do_encrypt)
+{
+    EVP_CIPHER_CTX *ctx;
 
-//General encryption and decryption function example using FILE I/O and AES256 with a 256-bit key.
-int do_crypt(char* textin, int do_encrypt){
-    unsigned char inbuf[BUFSIZE], outbuf[BUFSIZE + EVP_MAX_BLOCK_LENGTH]; //EVP_MAX_BLOCK_LENGTH = 128 бит
-    int inlen, outlen;
+    int len, ciphertext_len;
 
-    inlen = 0;
-    outlen = 0;
-    inlen = strlen(textin);
-
-    char *buff = new char[inlen+16];
-    char *buff_update = new char[inlen+16];
-    char *buff_final = new char[inlen+16];
-
-    cout<<textin<<"\n";
-
-    for(int i = 0; i < inlen+16; i++)
-        inbuf[i] = textin[i];
-
-    unsigned char key[] = "0123456789abcdeF0123456789abcdeF"; //256 бит
-    unsigned char iv[] = "1234567887654321"; //128 бит
-
-    EVP_CIPHER_CTX *ctx = EVP_CIPHER_CTX_new();
-
-    EVP_CipherInit_ex(ctx, EVP_aes_256_cbc(), NULL, NULL, NULL, do_encrypt);
-    OPENSSL_assert(EVP_CIPHER_CTX_key_length(ctx) == 32);
-    OPENSSL_assert(EVP_CIPHER_CTX_iv_length(ctx) == 16);
-    EVP_CipherInit_ex(ctx, NULL, NULL, key, iv, do_encrypt);
-
-    printf("%d B, In:\n", inlen);
-
-    if(!EVP_CipherUpdate(ctx, outbuf, &outlen, inbuf, inlen)){
-        EVP_CIPHER_CTX_free(ctx);
+    if(!(ctx = EVP_CIPHER_CTX_new()))
         return 0;
-    }
 
-    for(int i = 0; i < inlen+16; i++)
-        buff_update[i] = outbuf[i];
-    strcpy(buff, buff_update);
+    unsigned char *key = (unsigned char *)"0123456789abcdeF0123456789abcdeF";
+    unsigned char *iv = (unsigned char *)"1234567887654321";
 
+    if(1 != EVP_CipherInit_ex(ctx, EVP_aes_256_cbc(), NULL, key, iv, do_encrypt))
+        return 0;
 
-    printf("  %d B, OutU:\n", outlen);
+    if(1 != EVP_CipherUpdate(ctx, ciphertext, &len, plaintext, plaintext_len))
+        return 0;
+    ciphertext_len = len;
 
-    if(!EVP_CipherFinal_ex(ctx, outbuf, &outlen)){
-        EVP_CIPHER_CTX_free(ctx);
-        //return 0;
-    }
+    if(1 != EVP_CipherFinal_ex(ctx, ciphertext + len, &len))
+        return 0;
+    ciphertext_len += len;
 
-    printf("  %d B, OutF:\n", outlen);
-
-    if(do_encrypt == 1){
-        for(int i = 0; i < inlen+16; i++)
-            buff_final[i] = outbuf[i];
-        strcat(buff, buff_final);
-    }
-    delete [] booof;
-    strcpy(booof, buff);
-    cout<<"\n"<<"\n"<<"booof       "<<booof;
-
-    delete[] buff;
-    delete[] buff_final;
-    delete[] buff_update;
-
+    /* Clean up */
     EVP_CIPHER_CTX_free(ctx);
-    return 1;
+
+    return ciphertext_len;
 }
+
 
 int main(int argc, char *argv[]){
     QCoreApplication a(argc, argv);
 
-    string text1;
-    getline(cin, text1);
-    int size = text1.length();
-    char* text = new char[size];
-    strcpy((char*) text, text1.c_str());
+    //###########
 
-    printf("ENCRYPT:\n\n");
-    do_crypt(text, 1); // 0 - decrypt, 1 - encrypt
-    printf("\n---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ----\n\n");
-    printf("DECRYPT:\n\n");
+        string stringtext;
+        getline(cin, stringtext);
+        unsigned char *plaintext = (unsigned char*)stringtext.c_str();
 
-    do_crypt(booof, 0); // 0 - decrypt, 1 - encrypt
+        unsigned char ciphertext[128];
+        unsigned char decryptedtext[128];
 
-    delete[] booof;
+        int decryptedtext_len, ciphertext_len;
+
+        ciphertext_len = do_crypt(plaintext, strlen((char *)plaintext), ciphertext, 1);
+
+        printf("Ciphertext is:\n");
+        printf("%s\n", ciphertext);
+
+        decryptedtext_len = do_crypt(ciphertext, ciphertext_len, decryptedtext, 0);
+        decryptedtext[decryptedtext_len] = '\0';
+
+        printf("Decrypted text is:\n");
+        printf("%s\n", decryptedtext);
+
+    //############
+
     return a.exec();
 }
-
-//TEST
