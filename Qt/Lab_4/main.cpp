@@ -10,9 +10,11 @@ using namespace std;
 int do_crypt(unsigned char *sourcetext, unsigned char *ciphertext, int do_encrypt)
 {
     EVP_CIPHER_CTX *ctx = EVP_CIPHER_CTX_new();
+
     int sourcetext_len = strlen((char *)sourcetext),
             len,
             ciphertext_len;
+
     unsigned char *key = (unsigned char *)"0123456789abcdeF0123456789abcdeF",
             *iv = (unsigned char *)"1234567887654321";
 
