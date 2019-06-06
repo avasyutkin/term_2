@@ -16,11 +16,10 @@
 using namespace std;
 
 
-int do_crypt(unsigned char *plaintext, int plaintext_len, unsigned char *ciphertext, int do_encrypt)
+int do_crypt(unsigned char *plaintext, unsigned char *ciphertext, int do_encrypt)
 {
     EVP_CIPHER_CTX *ctx;
-
-    int len, ciphertext_len;
+    int plaintext_len = strlen((char *)plaintext), len, ciphertext_len;
 
     if(!(ctx = EVP_CIPHER_CTX_new()))
         return 0;
@@ -41,7 +40,7 @@ int do_crypt(unsigned char *plaintext, int plaintext_len, unsigned char *ciphert
 
     /* Clean up */
     EVP_CIPHER_CTX_free(ctx);
-
+    ciphertext[ciphertext_len] = '\0';
     return ciphertext_len;
 }
 
@@ -58,15 +57,13 @@ int main(int argc, char *argv[]){
         unsigned char ciphertext[128];
         unsigned char decryptedtext[128];
 
-        int decryptedtext_len, ciphertext_len;
-
-        ciphertext_len = do_crypt(plaintext, strlen((char *)plaintext), ciphertext, 1);
+        do_crypt(plaintext, ciphertext, 1);
 
         printf("Ciphertext is:\n");
         printf("%s\n", ciphertext);
 
-        decryptedtext_len = do_crypt(ciphertext, ciphertext_len, decryptedtext, 0);
-        decryptedtext[decryptedtext_len] = '\0';
+        do_crypt(ciphertext, decryptedtext, 0);
+
 
         printf("Decrypted text is:\n");
         printf("%s\n", decryptedtext);
