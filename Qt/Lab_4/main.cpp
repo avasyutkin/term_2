@@ -1,16 +1,9 @@
 #include <QCoreApplication>
 #include <iostream>
-#include <QString>
-#include <QTextStream>
 #include <string.h>
 #include <stdio.h>
+#include <unistd.h>
 #include <openssl/evp.h>
-#include <openssl/err.h>
-#include <openssl/conf.h>
-#include <string>
-#include <cstring>
-#include <cstdio>
-#include <qdebug.h>
 
 using namespace std;
 
@@ -68,12 +61,10 @@ int main(int argc, char *argv[])
             decryptedtext[128];
 
     do_crypt(sourcetext, ciphertext, 1);
-    printf("Ciphertext is:\n");
-    printf("%s\n", ciphertext);
+    cout << "Cipher text is " << ciphertext << "\n";
 
     do_crypt(ciphertext, decryptedtext, 0);
-    printf("Decrypted text is:\n");
-    printf("%s\n", decryptedtext);
+    cout << "Decrypted text is " << decryptedtext << "\n";
 
     return a.exec();
 }
