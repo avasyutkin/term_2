@@ -58,15 +58,16 @@ int main(int argc, char *argv[])
 
     string stringtext;
     getline(cin, stringtext);
+
     unsigned char *sourcetext = (unsigned char*)stringtext.c_str(),
             ciphertext[128],
             decryptedtext[128];
 
     do_crypt(sourcetext, ciphertext, 1);
-    cout << "Cipher text is " << ciphertext << "\n";
+    cout << "Cipher text: " << "\n" << ciphertext << "\n";
 
     do_crypt(ciphertext, decryptedtext, 0);
-    cout << "Decrypted text is " << decryptedtext << "\n";
+    cout << "Decrypted text: " << "\n" << decryptedtext << "\n";
 
     return a.exec();
 }
